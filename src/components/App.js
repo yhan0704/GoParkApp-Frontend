@@ -8,12 +8,15 @@ import Main from "./Main";
 import ParkCard from "./ParkCard"
 import {connect} from 'react-redux'
 import {fetchingParks} from "../redux/actionCreators"
+import {fetchingImages} from "../redux/actionCreators"
 import { Route, Switch, withRouter } from "react-router-dom";
 import ParkList from './ParkList';
+import ParkDetails from './ParkDetails';
 
 class App extends Component {
   componentDidMount(){
     this.props.fetchingParks()
+    this.props.fetchingImages()
   }
   render() {
     return (
@@ -24,6 +27,7 @@ class App extends Component {
           <Route exact path="/about" component={About}/>
           <Route exact path="/main" component={Main}/>
           <Route exact path="/parklist" component={ParkList}/>
+          <Route exact path="/parklist/:fullName" component={ParkDetails}/>
           <Route exact path="/parkcard" component={ParkCard}/>
         </Switch>
       <Footer />
@@ -33,7 +37,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchingParks: () => {dispatch(fetchingParks())}
+  fetchingParks: () => {dispatch(fetchingParks())},
+  fetchingImages: () => {dispatch(fetchingImages())}
 })
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
