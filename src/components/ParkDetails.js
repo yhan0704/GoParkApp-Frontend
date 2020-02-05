@@ -6,9 +6,10 @@ import {connect} from 'react-redux'
 function randomPic(images){
     // console.log(images)
     // debugger
-    let randomNum = Math.floor(Math.random() * images.length) + 1;
-    return images.find(image => image.id === randomNum)["image_url"]
+    let randomNum = Math.floor(Math.random() * 10) + 1
+    return images.find(image => image.id === randomNum).image_url
 }
+
 class ParkDetails extends Component {
     render() {
         // debugger
@@ -18,20 +19,49 @@ class ParkDetails extends Component {
             {this.props.parks.fullName}
             </div>
             <br/>
-            <div class="media">
+            <div className="media">
             <img id="parkDetailImage" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
-                <div class="media-body">
-                    <h5 class="mt-0">Description of the Park</h5>
+                <div className="media-body">
+                    <h5 className="mt-0">Description of the Park</h5>
                     <p>{this.props.parks.description}</p>
                 </div>
             </div>
             
-            <div class="media">
-                <div class="media-body">
-                    <h5 class="mt-0 mb-1">Weather Information</h5>
+            {/* Event modal */}
+            <div className="eventContainer">
+                <button id="eventButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
+                    To see Event
+                </button>
+            </div>
+
+                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModal3Label">This Month of Event</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    {this.props.parks.events.map(park => 
+                        <p>{park.id}</p>)}
+                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+            {/* weather Info */}
+            <div className="media">
+                <div className="media-body">
+                    <h5 className="mt-0 mb-1">Weather Information</h5>
                     <p>{this.props.parks.weatherInfo}</p>
                 </div>
-                <img class="d-flex ml-3" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
+                <img className="d-flex ml-3" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
             </div>
         </div>
         );

@@ -1,6 +1,7 @@
 import {FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
+const USERS = 'http://localhost:3000/users'
 
 function fetchedParks(parkssArray){
   return {type: FETCHED_PARKS, payload: parkssArray}

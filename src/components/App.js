@@ -21,6 +21,7 @@ class App extends Component {
   render() {
     return (
     <div className="App">
+      
       <Navbar />
         <Switch>
           <Route exact path="/" component={Welcome}/>
@@ -29,8 +30,11 @@ class App extends Component {
           <Route exact path="/parklist" component={ParkList}/>
           <Route exact path="/parklist/:fullName" component={ParkDetails}/>
           <Route exact path="/parkcard" component={ParkCard}/>
+          <Route path="/" component={Main}/>
         </Switch>
+
       <Footer />
+      
     </div>
     );
   }

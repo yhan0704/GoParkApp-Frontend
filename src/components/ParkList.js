@@ -29,8 +29,7 @@ const ParkList = props => {
 }
 
 const mapStateToProps = (store) => ({
-    parks: store.parks.filter(park => park.fullName.toLowerCase().includes(store.search.toLowerCase())).
-      filter(park => park.states.toLowerCase().includes(store.filter.toLowerCase())),
+    parks: store.parks.filter(park => park.fullName.toLowerCase().includes(store.search.toLowerCase())).filter(park => park.states.toLowerCase().includes(store.filter.toLowerCase())),
     loading: store.loading
   })
 
