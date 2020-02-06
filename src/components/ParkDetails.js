@@ -21,17 +21,28 @@ class ParkDetails extends Component {
             <br/>
             <div className="media">
             <img id="parkDetailImage" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
-                <div className="media-body">
-                    <h5 className="mt-0">Description of the Park</h5>
-                    <p>{this.props.parks.description}</p>
+                    <div className="media-body">
+                        <div className="pTagBackground">
+                        <h5 className="mt-0">Description of the Park</h5>
+                        <p>{this.props.parks.description}</p>
+                    </div>
                 </div>
             </div>
             
-            {this.props.parks.latLong}
+
+
+
+
+
+
+
+
+            
+            {/* {this.props.parks.latLong} */}
             {/* Event modal */}
             <div className="eventContainer">
-                <button id="eventButton" type="button" class="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
-                    To see Event
+                <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" class="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
+                    Show Event
                 </button>
             </div>
 
@@ -45,6 +56,7 @@ class ParkDetails extends Component {
                         </button>
                     </div>
                     <div class="modal-body">
+                    {this.props.parks.events.length === 0 ? <p>Sorry, but there are no events for this month.</p> : this.props.parks.events.map(event =>
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -56,18 +68,18 @@ class ParkDetails extends Component {
                             <th>Fee</th>
                             </tr>
                         </thead>    
-                    {this.props.parks.events.map(park => 
                         <tbody>
                         <tr>
-                          <td>{park.contactname}</td>
-                          <td>{park.contactemailaddress}</td>
-                          <td>{park.date}</td>
-                          <td>{park.timestart}</td>
-                          <td>{park.timesend}</td>
-                          <td>{park.free ? "Free" : "Not Free"}</td>
+                          <td>{event.contactname}</td>
+                          <td>{event.contactemailaddress}</td>
+                          <td>{event.date}</td>
+                          <td>{event.timestart}</td>
+                          <td>{event.timesend}</td>
+                          <td>{event.free ? "Free" : "Not Free"}</td>
                         </tr>
-                        </tbody>)}
+                        </tbody>
                     </table>
+                    )}
                     
                     </div>
                     <div class="modal-footer">
@@ -77,13 +89,24 @@ class ParkDetails extends Component {
                 </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
             {/* weather Info */}
             <div className="media">
                 <div className="media-body" id="cardDetailSecondPandh5tag">
-                    <h5 className="mt-0 mb-1">Weather Information</h5>
-                    <p>{this.props.parks.weatherInfo}</p>
+                    <div className="pTagBackground">
+                        <h5 className="mt-0 mb-1">Weather Information</h5>
+                        <p>{this.props.parks.weatherInfo}</p>
+                    </div>
                 </div>
-                <img className="d-flex ml-3" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
+                <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
             </div>
         </div>
         );

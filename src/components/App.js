@@ -28,7 +28,7 @@ class App extends Component {
     <div className="App">
       
       
-        <Navbar componen={<Navbar currentUser={this.props.user} />}/>
+         {this.props.user ? <Navbar /> : null}
         <Switch>
           <Route exact path="/" render={() => this.props.user ? <Redirect to='/main' /> : <Redirect to='/login' />}/>
           <Route exact path="/about" component={About}/>
