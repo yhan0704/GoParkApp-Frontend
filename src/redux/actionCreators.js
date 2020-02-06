@@ -1,7 +1,6 @@
-import {FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE} from './actionType'
+import {FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
-const USERS = 'http://localhost:3000/users'
 
 function fetchedParks(parkssArray){
   return {type: FETCHED_PARKS, payload: parkssArray}
@@ -10,6 +9,19 @@ function fetchedParks(parkssArray){
 function filterState(filterState){
   return {type: FILTER_STATE, payload: filterState}
 }
+
+function loggedIn(userObj){
+  return {type: LOGGED_IN, payload: userObj}
+}
+
+function signOut(){
+  // debugger
+  return {type: SIGN_OUT, payload:null}
+}
+
+// function fetchedUser(userArray){
+//   return {type: FETCHED_USERS, payload: userArray}
+// }
 
 
 function onSearch(searchText){
@@ -38,7 +50,6 @@ function fetchingParks(){
 
 function fetchingImages(){
   return (dispatch) => {
-    dispatch(loadingParks())
     fetch(IMAGE_URL)
     .then(res => res.json())
     .then(imageArray => {
@@ -47,4 +58,14 @@ function fetchingImages(){
   }
 }
 
-export {fetchingParks, fetchingImages, onSearch, filterState}
+// function fetchingUsers(){
+//   return (dispatch) => {
+//     fetch(USERS_URL)
+//     .then(res => res.json())
+//     .then(userArray => {
+//       dispatch(fetchedUser(userArray))
+//     })
+//   }
+// }
+
+export {fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}

@@ -14,7 +14,9 @@
 	display: flex;
 	justify-content: center;
 }
-
+.modal-content{
+	width:670px;
+}
 /* about.js */
 .aboutContainer{
     background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
@@ -28,7 +30,7 @@
 
 /* parkList */
 *{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .backgroundImg{
     background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
@@ -74,7 +76,8 @@
 /*  */
 .ui.card{
     background-color: rgb(255, 245, 138);
-    width:200px; 
+	width:200px;
+	height:440px; 
     margin:15px;  
 }
 
@@ -109,20 +112,25 @@
 .d-flex.ml-3{
     height:300px;
     width:400px;
-    padding: 3%;
+    padding: 1%;
 }
 .parkDetailContainer h5{
     padding-top:4%;
-    font-weight: bold;
+	font-weight: bold;
+	font-size: 25px;
 }
 .parkDetailContainer p{
     font-size: 20px;
+}
+#cardDetailSecondPandh5tag{
+	padding-left:3.5%;
 }
 
 /* about Navbar */
 .d-flex.justify-content-end a{
     color: gray
 }
+
 
 
 

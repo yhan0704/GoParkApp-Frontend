@@ -1,6 +1,33 @@
 import React, { Component } from 'react';
+import {loggedIn} from '../redux/actionCreators'
+import {connect} from 'react-redux'
 
 class Welcome extends Component {
+    state = {
+        username: "",
+        password: ""
+    };
+
+    handleChange = (e) => {
+        this.setState({ 
+            [e.target.name]: e.target.value
+        });
+    };
+
+    handleLoginSubmit =(e) => {
+        e.preventDefault()
+        // console.log("log in clicked")
+        fetch("http://localhost:3000/login",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({username: this.state.username, password: this.state.password})
+            }).then(res => res.json())
+            .then(loggedInUser =>{
+                // console.log(loggedInUser)
+                this.props.loggedIn(loggedInUser)
+            })
+        }
+
     render() {
         return (
             <div className="welcomContainer">
@@ -18,38 +45,63 @@ class Welcome extends Component {
                                 </div>
                                 <hr />
                             </div>
+
+                            {/* Log In form */}
+
                             <div className="panel-body">
                                 <div className="row">
                                     <div className="col-lg-12">
-                                        <form id="login-form" style={{display: "block"}}>
+                                        <form id="login-form" onSubmit={this.handleLoginSubmit} style={{display: "block"}}>
                                             <div className="form-group">
-                                                <input type="text" name="username" id="username" tabindex="1" className="form-control" placeholder="Username" value="" />
+                                                <input type="text" 
+                                                name="username" 
+                                                tabIndex="1" 
+                                                className="form-control" 
+                                                placeholder="Username" 
+                                                onChange={this.handleChange} 
+                                                value={this.state.username}/>
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" tabindex="2" className="form-control" placeholder="Password" />
+                                                <input type="password" 
+                                                name="password" 
+                                                tabIndex="2" 
+                                                className="form-control" 
+                                                placeholder="Password" 
+                                                onChange={this.handleChange} 
+                                                value={this.state.password}/>
                                             </div>
                                             <div className="form-group">
                                                 <div className="row">
                                                     <div className="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" name="login-submit" id="login-submit" tabindex="4" className="form-control btn btn-login" value="Log In" />
+                                                        <input 
+                                                        type="submit" 
+                                                        name="login-submit" 
+                                                        id="login-submit" 
+                                                        tabIndex="4" 
+                                                        className="form-control btn btn-login" 
+                                                        value="Log In" 
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
                                         </form>
+
+                                        {/* sign up form */}
+
                                         <form id="register-form" style={{display: "none"}}>
                                             <div className="form-group">
-                                                <input type="text" name="username" id="username" tabindex="1" className="form-control" placeholder="Username" value="" />
+                                                <input type="text" name="username" id="username" tabIndex="1" className="form-control" placeholder="Username" />
                                             </div>
                                             <div className="form-group">
-                                                <input type="email" name="email" id="email" tabindex="1" className="form-control" placeholder="Email Address" value="" />
+                                                <input type="email" name="email" id="email" tabIndex="1" className="form-control" placeholder="Email Address" />
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" tabindex="2" className="form-control" placeholder="Password" />
+                                                <input type="password" name="password" id="password" tabIndex="2" className="form-control" placeholder="Password" />
                                             </div>
                                             <div className="form-group">
                                                 <div className="row">
                                                     <div className="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" className="form-control btn btn-register" value="Register Now" />
+                                                        <input type="submit" name="register-submit" id="register-submit" tabIndex="4" className="form-control btn btn-register" value="Register Now" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,6 +118,12 @@ class Welcome extends Component {
     }
 }
 
+const mapDispatchToProps = dispath => {
+    return {
+        loggedIn: (user) => {
+            dispath(loggedIn(user))
+        }
+    }
+}
 
-
-export default Welcome
+export default connect(null, mapDispatchToProps)(Welcome)

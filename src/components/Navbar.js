@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
+import {signOut} from '../redux/actionCreators'
 
 class Navbar extends Component{
     render() {
+        console.log(this.props)
         return (
             <div className="navContainer">
             <nav className="navbar fixed-top navbar-expand-lg navbar-light alert-info bg-lightblue" id="sizeNavBar">
@@ -23,8 +26,8 @@ class Navbar extends Component{
                     </li>
                     </ul>
                     <div className="d-flex justify-content-end">
-                        <a className="nav-link" href="/parklist" style={{color:"black"}}>Profile</a>
-                        <a className="nav-link" href="/" style={{color:"black"}}>Sign Out</a>
+                        <a className="nav-link" href="/profile" style={{color:"black"}}>{this.props.user ? "Profile" : ""} </a>
+                        <a className="nav-link" href="/login" onClick={() => {this.props.signOut(this.props.user)}} style={{color:"black"}} >{ this.props.user ?"Sign Out" : "" } </a>
                     </div>
                 </div>
             </nav>
@@ -33,4 +36,18 @@ class Navbar extends Component{
     }
 }
 
-export default Navbar
+const mapStateToProps = state =>{
+    return {
+      parks:state.parks,
+      user :state.loggedInUser
+    }
+  }
+
+const mapDispatchToProps = dispath => ({
+        signOut: (user) => {
+            dispath(signOut(user))
+    }
+}) 
+
+
+export default  connect(mapStateToProps, mapDispatchToProps)(Navbar)

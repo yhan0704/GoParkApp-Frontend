@@ -19,7 +19,6 @@ const SearchBar = props => {
             <option value="MD">Maryland</option>
             <option value="VA">Virginia</option>
             </select>
-            <input type="radio" name="gender" value="female"/> <strong className="radioText">By Likes</strong>
             </form>
         </div>
     )

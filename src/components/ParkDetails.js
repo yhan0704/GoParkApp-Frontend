@@ -27,9 +27,10 @@ class ParkDetails extends Component {
                 </div>
             </div>
             
+            {this.props.parks.latLong}
             {/* Event modal */}
             <div className="eventContainer">
-                <button id="eventButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
+                <button id="eventButton" type="button" class="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
                     To see Event
                 </button>
             </div>
@@ -44,8 +45,29 @@ class ParkDetails extends Component {
                         </button>
                     </div>
                     <div class="modal-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th>Contact Name</th>
+                            <th>Contact E-mail</th>
+                            <th>Date</th>
+                            <th>Time Start</th>
+                            <th>Times End</th>
+                            <th>Fee</th>
+                            </tr>
+                        </thead>    
                     {this.props.parks.events.map(park => 
-                        <p>{park.id}</p>)}
+                        <tbody>
+                        <tr>
+                          <td>{park.contactname}</td>
+                          <td>{park.contactemailaddress}</td>
+                          <td>{park.date}</td>
+                          <td>{park.timestart}</td>
+                          <td>{park.timesend}</td>
+                          <td>{park.free ? "Free" : "Not Free"}</td>
+                        </tr>
+                        </tbody>)}
+                    </table>
                     
                     </div>
                     <div class="modal-footer">
@@ -57,7 +79,7 @@ class ParkDetails extends Component {
 
             {/* weather Info */}
             <div className="media">
-                <div className="media-body">
+                <div className="media-body" id="cardDetailSecondPandh5tag">
                     <h5 className="mt-0 mb-1">Weather Information</h5>
                     <p>{this.props.parks.weatherInfo}</p>
                 </div>
