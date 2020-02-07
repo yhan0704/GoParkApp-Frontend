@@ -20,12 +20,12 @@
 	display: inline-block;
 }
 .goparkWord p{
-	font-size:150px;
+	font-size:130px;
 	color: lightyellow;
 	font-family: 'Zhi Mang Xing', cursive;
 }
 .parkMenubar{
-	margin-left:40%;
+	margin-left:35%;
 }
 
 .parkMenubar select{

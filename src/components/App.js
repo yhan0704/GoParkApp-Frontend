@@ -47,15 +47,6 @@ class App extends Component {
   }
 }
 
-{/* <Switch>
-<Route exact path="/" render={() => this.state.currentUser ? <Main /> : <Welcome updateUser={this.updateUser}/>}/>
-<Route exact path="/about" component={About}/>
-<Route exact path="/main" render={()=>this.state.currentUser ? <Main /> : <Welcome />}/>
-<Route exact path="/parklist" render={()=> this.state.currentUser ? <ParkList/> : <Welcome /> }/>
-<Route exact path="/parklist/:fullName" component={ParkDetails}/>
-<Route exact path="/parkcard" component={ParkCard}/>
-<Route path="/" render={ ()=> this.state.currentUser ? <Main /> : <Welcome />} />
-</Switch> */}
 const mapStateToProps = state =>{
   return {
     parks:state.parks,
@@ -66,7 +57,6 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = (dispatch) => ({
   fetchingParks: () => {dispatch(fetchingParks())},
   fetchingImages: () => {dispatch(fetchingImages())},
-  // fetchingUsers: () => {dispatch(fetchingUsers())}
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

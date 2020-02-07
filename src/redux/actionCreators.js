@@ -1,4 +1,4 @@
-import {FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
 
@@ -17,6 +17,10 @@ function loggedIn(userObj){
 function signOut(){
   // debugger
   return {type: SIGN_OUT, payload:null}
+}
+
+function parkName(parkName){
+  return {type: PARK_NAME, payload:parkName}
 }
 
 // function fetchedUser(userArray){
@@ -68,4 +72,4 @@ function fetchingImages(){
 //   }
 // }
 
-export {fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}
+export {parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}

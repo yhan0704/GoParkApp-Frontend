@@ -23,7 +23,7 @@ const ParkCard = props =>{
                 </div>
             </div>
             <div className="extra content">
-            <button type="button" class="btn btn-secondary">Visited</button>
+            <button type="button" className="btn btn-secondary">Visited</button>
             </div>
         </div>
         </div>

@@ -41,24 +41,24 @@ class ParkDetails extends Component {
             {/* {this.props.parks.latLong} */}
             {/* Event modal */}
             <div className="eventContainer">
-                <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" class="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
+                <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" className="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
                     Show Event
                 </button>
             </div>
 
-                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal3Label">This Month of Event</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModal3Label">This Month of Event</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div className="modal-body">
                     {this.props.parks.events.length === 0 ? <p>Sorry, but there are no events for this month.</p> : this.props.parks.events.map(event =>
-                    <table class="table">
-                        <thead class="thead-dark">
+                    <table className="table">
+                        <thead className="thead-dark">
                             <tr>
                             <th>Contact Name</th>
                             <th>Contact E-mail</th>
@@ -82,8 +82,8 @@ class ParkDetails extends Component {
                     )}
                     
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                     </div>
                 </div>
