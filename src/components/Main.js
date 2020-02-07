@@ -16,7 +16,7 @@ function alphabetOrder(array){
 }
 class Main extends Component{
     render() {
-        console.log(this.props.parkName)
+        // console.log(this.props.parkName)
         return (
             <div id="mainBackGround">
                 <div className="goparkWord">
@@ -24,8 +24,8 @@ class Main extends Component{
                 <p style={{fontSize:"60px"}}>DMV Aears</p>
                 </div>
                 <div className="parkMenubar">
-                        <p style={{color:"white", fontSize:"60px"}}>Find your park :)</p> 
-                    <select onChange={(e) => this.props.parkName(e.target.value)}>
+                        <p style={{color:"white", fontSize:"60px"}}>Find your Park :)</p> 
+                    <select className="selectInMain" onChange={(e) => this.props.parkName(e.target.value)}>
                         {alphabetOrder(removeDuplicadtePark(this.props.parks)).map(park => 
                         <option key={park.id}>{park.fullName}</option>
                         )}

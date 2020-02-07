@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {loggedIn} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 import { withRouter} from 'react-router-dom';
-import {Redirect} from 'react-router'
 
 class Welcome extends Component {
     state = {

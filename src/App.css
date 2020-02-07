@@ -1,5 +1,6 @@
 *{
 	font-size:18px;
+	
 }
 /* welcome.js */
 .welcomContainer{
@@ -25,11 +26,12 @@
 	font-family: 'Zhi Mang Xing', cursive;
 }
 .parkMenubar{
-	margin-left:35%;
+	margin-left:30%;
+	margin-top:2%;
 }
 
 .parkMenubar select{
-	width:300px;
+	width:550px;
 }
 
 /* Event modal */
@@ -93,7 +95,7 @@
 
 /* parkList */
 *{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 }
 .backgroundImg{
     background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
@@ -114,6 +116,10 @@
     font-size:20px;
 
 }
+.extra.content{
+	text-align: center;
+}
+
 /* sarch bar */
 .searchContainer{
     display: flex;
