@@ -44,14 +44,32 @@
 	width:670px;
 }
 /* about.js */
+
+
 .aboutContainer{
-    background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
-    box-shadow: inset 0 0 0 1000px rgba(247, 244, 244, 0.42);
-    font-size: 25px;
+	position: relative;
 }
+
 .aboutContainer img{
-    height:300px;
-    width:500px;
+    height:400px;
+    width:100%;
+}
+
+.aboutTextCenter{
+	position: absolute;
+	top:20%;
+	left:40%;
+	color:lightseagreen;
+	font-size: 80px;
+	font-weight: bold;
+}
+.aboutPtagTextCenter{
+	position: absolute;
+	top:50%;
+	left:25%;
+	/* text-align: center; */
+	color:lightpink;
+	font-size: 20px;	
 }
 
 /* parkList */
@@ -123,6 +141,7 @@
 }
 .pTagBackground{
 	background-color: lightgrey;
+	margin-right: 4em;
 }
 .parkDetailContainer{
     background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx1oxiebInDGV0YI_aogGygLyD4BNTEm2LnedwLp-4wbJNaHD6gw&s");
