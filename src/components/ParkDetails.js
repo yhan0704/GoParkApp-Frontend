@@ -45,7 +45,6 @@ class ParkDetails extends Component {
                 <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" className="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
                 { this.props.parks.events.length !== 0 ?    "Show Event" : "No Upcoming" }
                 </button> 
-                : null }
             </div>
 
                 <div className="modal fade" id="exampleModal3" tabIndex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">

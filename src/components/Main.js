@@ -26,8 +26,9 @@ class Main extends Component{
                 <div className="parkMenubar">
                         <p style={{color:"white", fontSize:"60px"}}>Find your Park :)</p> 
                     <select className="selectInMain" onChange={(e) => this.props.parkName(e.target.value)}>
-                        {alphabetOrder(removeDuplicadtePark(this.props.parks)).map(park => 
-                        <option key={park.id}>{park.fullName}</option>
+                        <option value="Choose here" selected disabled hidden>Please feel free to search your favorite Park</option>
+                        {alphabetOrder(removeDuplicadtePark(this.props.parks)).map(park =>
+                        <option key={park.id} value={park.fullName}>{park.fullName}</option>
                         )}
                     </select>
                     <Link to={`/parklist/${this.props.name}`}><button type="submit" style={{marginLeft:"3%"}}>Search</button></Link>

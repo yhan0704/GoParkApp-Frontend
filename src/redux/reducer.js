@@ -14,7 +14,7 @@ const loadingReducer = (oldState=false, action) => {
   }
 }
 
-const parkNameReducer = (oldState="", action) => {
+const parkNameReducer = (oldState="please select park", action) => {
   switch (action.type) {
     case PARK_NAME:
       return action.payload

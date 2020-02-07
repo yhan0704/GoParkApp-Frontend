@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import {conncect} from "react-redux";
+import swal from 'sweetalert';
 
 function formatState(states){
     let stateArray = states.split(',')
@@ -24,10 +25,11 @@ class ParkCard extends Component{
             <div>
             <div className="ui card">
                 <div className="image">
+                    <a href={`/parklist/${this.props.park.fullName}`}>
                     { this.props.park.fullName === "Assateague Island National Seashore" ? <img id="parkImage" 
                         src="https://www.nps.gov/common/uploads/structured_data/3C809F06-1DD8-B71B-0B39C9B927D2C688.jpg" alt={this.props.park.fullName} /> : 
-                        <img id="parkImage" src={this.props.park.image_url} alt={this.props.park.fullName} /> }
-                    
+                    <img id="parkImage" src={this.props.park.image_url} alt={this.props.park.fullName} /> }
+                    </a>
                 </div>
                 <div className="content">
                     <Link to={`/parklist/${this.props.park.fullName}`} className="header">{this.props.park.fullName}</Link>
@@ -36,7 +38,8 @@ class ParkCard extends Component{
                     </div>
                 </div>
                 <div className="extra content">
-                <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-secondary">Visit</button>
+                {this.state.visit === false ? <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> :
+                 <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-success">Visited</button>}
                 </div>
             </div>
             </div>
