@@ -4,7 +4,7 @@
 }
 /* welcome.js */
 .welcomContainer{
-    padding:10% 0;
+	padding:13em;
 }
 
 /* main page */
@@ -48,7 +48,27 @@
 	width:670px;
 }
 /* about.js */
+.imageInAbout{	
+	display: flex;	
+	/* flex-flow: row wrap; */	
+	/* margin:auto; */	
+	justify-content: center;	
+}	
 
+
+.aboutMainText{	
+	font-size: 40px;	
+	font-family: 'Lobster', cursive;	
+	padding:4em;	
+}	
+.svgImageAbout{	
+	display: flex;	
+	flex-flow: row wrap;	
+	/* margin:auto; */	
+	justify-content: space-around;	
+	/* justify-content: center; */	
+	margin: 4em 0em;	
+}
 
 .aboutContainer{
 	position: relative;
@@ -129,12 +149,12 @@
 .ui.card{
     background-color: rgb(255, 245, 138);
 	width:200px;
-	height:440px; 
+	height:420px; 
     margin:15px;  
 }
 
 #parkImage{
-    height:300px;
+    height:280px;
     width:200px;
     position:relative;
     right:1px;
@@ -173,7 +193,8 @@
 .d-flex.ml-3{
     height:300px;
     width:400px;
-    padding: 1%;
+	padding:0% 2% 2% 0%;
+
 }
 .parkDetailContainer h5{
     padding-top:0;
@@ -192,9 +213,13 @@
     color: gray
 }
 
+#navOption{
+	padding-left:1em;
+}
 
-
-
+#profileSignoutTag{
+	padding-top:.5em;
+}
 /* welcome login signup */
 
 .panel-login {

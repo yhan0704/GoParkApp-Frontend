@@ -14,18 +14,18 @@ class Navbar extends Component{
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
-                        <a className="nav-link" href="/main">Home <span className="sr-only">(current)</span></a>
+                        <a id="navOption" className="nav-link" href="/main">Home <span className="sr-only">(current)</span></a>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="/about">About Us</a>
+                        <a id="navOption" className="nav-link" href="/about">About Us</a>
                     </li>
                     <li className="nav-item active">
-                        <a className="nav-link" href="/parklist">Park</a>
+                        <a id="navOption" className="nav-link" href="/parklist">Park</a>
                     </li>
                     </ul>
-                    <div className="d-flex justify-content-end">
-                        <a className="nav-link" href="/profile" style={{color:"black"}}>{this.props.user ? "Profile" : ""} </a>
-                        <a className="nav-link" href="/login" onClick={() => {this.props.signOut(this.props.user)}} style={{color:"black"}} >{ this.props.user ?"Sign Out" : "" } </a>
+                    <div id="profileSignoutTag"className="d-flex justify-content-end">
+                        <a id="navOption" className="nav-link" href="/profile" style={{color:"black"}}>{this.props.user ? "Profile" : ""} </a>
+                        <a id="navOption" className="nav-link" href="/login" onClick={() => {this.props.signOut(this.props.user)}} style={{color:"black"}} >{ this.props.user ?"Sign Out" : "" } </a>
                     </div>
                 </div>
             </nav>

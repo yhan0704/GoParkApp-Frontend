@@ -88,7 +88,9 @@ class Welcome extends Component {
                                                 className="form-control" 
                                                 placeholder="Password" 
                                                 onChange={this.handleChange} 
-                                                value={this.state.password}/>
+                                                value={this.state.password}
+                                                required
+                                                />
                                             </div>
                                             <div className="form-group">
                                                 <div className="row">
@@ -100,6 +102,7 @@ class Welcome extends Component {
                                                         tabIndex="4" 
                                                         className="form-control btn btn-login" 
                                                         value="Log In" 
+                                                        required
                                                         />
                                                     </div>
                                                 </div>
@@ -110,18 +113,42 @@ class Welcome extends Component {
 
                                         <form id="register-form" style={{display: "none"}} onSubmit={this.handleSignUpSubmit}>
                                             <div className="form-group">
-                                                <input type="text" name="username" id="username" tabIndex="1" className="form-control" placeholder="Username" />
+                                                <input type="text" 
+                                                name="username" 
+                                                id="username" 
+                                                tabIndex="1" 
+                                                className="form-control" 
+                                                placeholder="Username" 
+                                                required
+                                                />
                                             </div>
                                             <div className="form-group">
-                                                <input type="email" name="email" id="email" tabIndex="1" className="form-control" placeholder="Email Address" />
+                                                <input type="email"
+                                                 name="email" 
+                                                 id="email" 
+                                                 tabIndex="1" 
+                                                 className="form-control" 
+                                                 placeholder="Email Address" 
+                                                 required/>
                                             </div>
                                             <div className="form-group">
-                                                <input type="password" name="password" id="password" tabIndex="2" className="form-control" placeholder="Password" />
+                                                <input type="password" 
+                                                name="password" 
+                                                id="password"
+                                                tabIndex="2"
+                                                className="form-control" 
+                                                placeholder="Password" 
+                                                required/>
                                             </div>
                                             <div className="form-group">
                                                 <div className="row">
                                                     <div className="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" name="register-submit" id="register-submit" tabIndex="4" className="form-control btn btn-register" value="Register Now" />
+                                                        <input type="submit" 
+                                                        name="register-submit"
+                                                        id="register-submit" 
+                                                        tabIndex="4"
+                                                        className="form-control btn btn-register" 
+                                                        value="Register Now" />
                                                     </div>
                                                 </div>
                                             </div>

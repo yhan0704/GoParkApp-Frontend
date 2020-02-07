@@ -15,6 +15,7 @@ class ParkCard extends Component{
     }
 
     visitToggle = () =>{
+        
         this.setState({
             visit : true
         })
@@ -31,7 +32,7 @@ class ParkCard extends Component{
                     <img id="parkImage" src={this.props.park.image_url} alt={this.props.park.fullName} /> }
                     </a>
                 </div>
-                <div className="content">
+                <div style={{padding:"0.15em"}}className="content">
                     <Link to={`/parklist/${this.props.park.fullName}`} className="header">{this.props.park.fullName}</Link>
                     <div className="meta">
                     State: <span className="date"> {formatState(this.props.park.states)}</span>

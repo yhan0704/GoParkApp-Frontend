@@ -43,7 +43,7 @@ class ParkDetails extends Component {
             <div className="eventContainer">
                 
                 <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" className="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
-                { this.props.parks.events.length !== 0 ?    "Show Event" : "No Upcoming" }
+                { this.props.parks.events.length !== 0 ? "Show Event" : "No Upcoming Events" }
                 </button> 
             </div>
 
