@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import ParkCard from './ParkCard'
 import {  Link } from 'react-router-dom';
 import {parkName} from '../redux/actionCreators'
 

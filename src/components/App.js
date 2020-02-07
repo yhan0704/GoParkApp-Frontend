@@ -10,7 +10,6 @@ import ParkCard from "./ParkCard"
 import {connect} from 'react-redux'
 import {fetchingParks} from "../redux/actionCreators"
 import {fetchingImages} from "../redux/actionCreators"
-import {fetchingUsers} from "../redux/actionCreators"
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import ParkList from './ParkList';
 import ParkDetails from './ParkDetails';

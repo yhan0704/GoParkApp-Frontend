@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {loggedIn} from '../redux/actionCreators'
 import {connect} from 'react-redux'
+import { withRouter} from 'react-router-dom';
+import {Redirect} from 'react-router'
 
 class Welcome extends Component {
     state = {
@@ -27,6 +29,25 @@ class Welcome extends Component {
                 this.props.loggedIn(loggedInUser)
             })
         }
+
+    handleSignUpSubmit =(e) =>{
+        // debugger
+        e.preventDefault()
+        fetch("http://localhost:3000/users",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"},
+            body: JSON.stringify({
+                name: e.target[0].value, 
+                email: e.target[1].value,
+                password: e.target[2].value
+            })
+            }).then(res => {
+                if(res.ok){
+                    this.props.history.push(window.location.reload())
+                }
+            })
+            }
 
     render() {
         return (
@@ -88,7 +109,7 @@ class Welcome extends Component {
 
                                         {/* sign up form */}
 
-                                        <form id="register-form" style={{display: "none"}}>
+                                        <form id="register-form" style={{display: "none"}} onSubmit={this.handleSignUpSubmit}>
                                             <div className="form-group">
                                                 <input type="text" name="username" id="username" tabIndex="1" className="form-control" placeholder="Username" />
                                             </div>
@@ -126,4 +147,4 @@ const mapDispatchToProps = dispath => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Welcome)
+export default withRouter(connect(null, mapDispatchToProps)(Welcome))
