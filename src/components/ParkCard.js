@@ -15,7 +15,6 @@ class ParkCard extends Component{
     }
 
     visitToggle = () =>{
-        
         this.setState({
             visit : true
         })

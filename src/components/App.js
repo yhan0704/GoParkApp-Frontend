@@ -14,6 +14,7 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import ParkList from './ParkList';
 import ParkDetails from './ParkDetails';
 
+
 class App extends Component {
 
   componentDidMount(){

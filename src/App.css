@@ -208,6 +208,24 @@
 	padding-left:3.5%;
 }
 
+.directionText{
+	font-size: 50px;
+	text-align: center;
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+	font-family: 'Sriracha', cursive;
+}
+
+.mapContainer {
+	position: relative;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	height:400px;
+	margin: 2% 0%;
+}
+
 /* about Navbar */
 .d-flex.justify-content-end a{
     color: gray

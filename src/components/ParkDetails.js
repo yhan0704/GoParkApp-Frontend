@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
+import mapboxgl from 'mapbox-gl';
+
+const API_KEY = process.env.REACT_APP_MAP_API_KEY
+mapboxgl.accessToken = API_KEY;
 // import {withRouter} from 'react-router-dom'
 
 function randomPic(images){
@@ -11,9 +15,32 @@ function randomPic(images){
 }
 
 class ParkDetails extends Component {
+    state={
+        lat:this.props.parks.latLong.split(" ")[0].slice(4,-1),
+        lng:this.props.parks.latLong.split(" ")[1].slice(5),
+        zoom:10
+    }
+
+    componentDidMount() {
+        const map = new mapboxgl.Map({
+        container: this.mapContainer,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [this.state.lng, this.state.lat],
+        zoom: this.state.zoom
+        });
+        map.on( () => {
+            this.setState({
+            lng: map.getCenter().lng.toFixed(4),
+            lat: map.getCenter().lat.toFixed(4),
+            zoom: map.getZoom().toFixed(2)
+            });
+        });
+    }
+
     render() {
         // debugger
         return !this.props.parks ? null : (
+            <div>
         <div className="parkDetailContainer">
             <div className="detailParkName">
             {this.props.parks.fullName}
@@ -28,15 +55,6 @@ class ParkDetails extends Component {
                     </div>
                 </div>
             </div>
-            
-
-
-
-
-
-
-
-
             
             {/* {this.props.parks.latLong} */}
             {/* Event modal */}
@@ -90,15 +108,6 @@ class ParkDetails extends Component {
                 </div>
                 </div>
 
-
-
-
-
-
-
-
-
-
             {/* weather Info */}
             <div className="media">
                 <div className="media-body" id="cardDetailSecondPandh5tag">
@@ -109,6 +118,9 @@ class ParkDetails extends Component {
                 </div>
                 <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
             </div>
+            <div className="directionText">Location on Map</div>
+        </div>
+            <div ref={el => this.mapContainer = el} className="mapContainer" />
         </div>
         );
     }

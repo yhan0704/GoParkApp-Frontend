@@ -9,11 +9,11 @@ const Profile = props =>{
             <div className="form-group row">
               <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">User Name</label>
               <div className="col-sm-10">
-                <input type="text" id="inputEmail3" value={props.user.name} />
+                <input type="text" id="inputEmail3" disabled value={props.user.name} />
               </div>
               <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">User Email</label>
               <div className="col-sm-10">
-                <input type="text" id="inputEmail3" value={props.user.email} />
+                <input type="text" id="inputEmail3" disabled value={props.user.email} />
               </div>
             </div>
           </form>
