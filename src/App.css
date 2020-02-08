@@ -215,6 +215,9 @@
 	padding-bottom:0.5em;
 	font-family: 'Sriracha', cursive;
 }
+.directionText a{
+	font-size:20px;
+}
 
 .mapContainer {
 	position: relative;

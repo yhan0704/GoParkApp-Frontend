@@ -18,7 +18,7 @@ class ParkDetails extends Component {
     state={
         lat:this.props.parks.latLong.split(" ")[0].slice(4,-1),
         lng:this.props.parks.latLong.split(" ")[1].slice(5),
-        zoom:10
+        zoom:12
     }
 
     componentDidMount() {
@@ -36,6 +36,8 @@ class ParkDetails extends Component {
             });
         });
     }
+
+
 
     render() {
         // debugger
@@ -118,7 +120,9 @@ class ParkDetails extends Component {
                 </div>
                 <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
             </div>
-            <div className="directionText">Location on Map</div>
+           
+            
+            <div className="directionText"> Location on Map  <a target="blank" href={`https://www.google.com/maps/place/${this.props.parks.fullName.replace(' ', '+')}`} >Direction</a> </div>
         </div>
             <div ref={el => this.mapContainer = el} className="mapContainer" />
         </div>
