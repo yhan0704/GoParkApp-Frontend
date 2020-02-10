@@ -1,4 +1,4 @@
-import {PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
 
@@ -8,6 +8,11 @@ function fetchedParks(parkssArray){
 
 function filterState(filterState){
   return {type: FILTER_STATE, payload: filterState}
+}
+
+function favorite(favoriteObj){
+  // debugger
+  return {type: FAVORITE, payload: favoriteObj}
 }
 
 function loggedIn(userObj){
@@ -72,4 +77,4 @@ function fetchingImages(){
 //   }
 // }
 
-export {parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}
+export {favorite, parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}

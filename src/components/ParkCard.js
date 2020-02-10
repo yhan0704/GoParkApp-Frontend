@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import {conncect} from "react-redux";
+import {connect} from "react-redux";
+import { withRouter} from 'react-router-dom';
 import swal from 'sweetalert';
+import {favorite} from '../redux/actionCreators'
 
 function formatState(states){
     let stateArray = states.split(',')
@@ -15,12 +17,29 @@ class ParkCard extends Component{
     }
 
     visitToggle = () =>{
-        this.setState({
-            visit : true
-        })
-    }
+        // debugger
+        // e.preventDefault()
+        fetch("http://localhost:3000/favorites",{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                    park_id : this.props.park.id,
+                    user_id : this.props.user.id,
+                    visit : true
+            })
+            }).then(res => {
+                if(res.ok){
+                    swal("Congratulations!!!!! Your health improved!!", "Check your profile");
+                    return res.json();
+                }
+            }).then(
+                favoriteData => {
+                   { this.props.favorite(favoriteData)}
+                })
+            }
 
     render() {
+        // debugger
         return (
             <div>
             <div className="ui card">
@@ -31,15 +50,15 @@ class ParkCard extends Component{
                     <img id="parkImage" src={this.props.park.image_url} alt={this.props.park.fullName} /> }
                     </a>
                 </div>
-                <div style={{padding:"0.15em"}}className="content">
+                <div style={{padding:"0.15em", textAlign:"center"}}className="content">
                     <Link to={`/parklist/${this.props.park.fullName}`} className="header">{this.props.park.fullName}</Link>
                     <div className="meta">
                     State: <span className="date"> {formatState(this.props.park.states)}</span>
                     </div>
                 </div>
                 <div className="extra content">
-                {this.state.visit === false ? <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> :
-                 <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-success">Visited</button>}
+                {this.props.visit !== false ? <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> :
+                    <button type="button" style={{padding:"5px 20px"}} className="btn btn-success">Visited</button> }
                 </div>
             </div>
             </div>
@@ -48,12 +67,17 @@ class ParkCard extends Component{
 }
 
 
-// const mapDispatchToProps = dispath => {
-//     return {
-//         loggedIn: (user) => {
-//             dispath(loggedIn(user))
-//         }
-//     }
-// }
+const mapStateToProps = (store) => ({
+    user: store.loggedInUser,
+    visit : store.favorite.visit
+})
 
-export default (ParkCard)
+const mapDispatchToProps = dispath => {
+    return {
+        favorite: (favoriteObj) => {
+            dispath(favorite(favoriteObj))
+        }
+    }
+}
+
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(ParkCard))

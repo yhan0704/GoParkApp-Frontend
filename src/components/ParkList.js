@@ -15,11 +15,12 @@ function removeDuplicadtePark(array){
 
 const ParkList = props => {
     // console.log(props.parks)
+    // debugger
     return(
         <div className ="backgroundImg">
             <SearchBar />
             <div className="cardContainer">
-                {removeDuplicadtePark(props.parks).map(park => <ParkCard 
+                {removeDuplicadtePark(props.parks).filter(park => park.latLong.length !==0).map(park => <ParkCard 
                 key={park.id}
                 park={park}
                 />)}

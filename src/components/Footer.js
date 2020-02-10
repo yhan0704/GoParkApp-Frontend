@@ -17,12 +17,13 @@ class Footer extends Component {
       
       <div className="col-md-8 col-12 mt-5">
         <p style={{lineHeight: "1.7rem"}}>
-          Created by Young Chan Han </p>
+          Created by <a style={{color:"lightblue"}} href="https://www.linkedin.com/in/yhan1205/">Young Chan Han</a>
+        </p>
           <hr/>
         <p>
           Having trouble? contact  <a style={{color:"lightblue"}}href="mailto:yhan1205@gmail.com">Go Park</a>.
         </p>
-        Tel: <a style={{color:"lightblue"}} href="tel:123-456-7890">123-456-7890</a>
+        {/* Tel: <a style={{color:"lightblue"}} href="tel:123-456-7890">123-456-7890</a> */}
       </div>
       
 

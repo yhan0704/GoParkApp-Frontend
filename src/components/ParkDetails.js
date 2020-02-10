@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, {useState} from "react";
 // import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
-import mapboxgl from 'mapbox-gl';
+// import mapboxgl from 'mapbox-gl';
+import ReactMapGL, {Marker} from 'react-map-gl';
+import maker from './15a524defc39fbdc84c8f3945546384d.png' 
 
 const API_KEY = process.env.REACT_APP_MAP_API_KEY
-mapboxgl.accessToken = API_KEY;
+// mapboxgl.accessToken = API_KEY;
 // import {withRouter} from 'react-router-dom'
 
 function randomPic(images){
@@ -14,56 +16,38 @@ function randomPic(images){
     return images.find(image => image.id === randomNum).image_url
 }
 
-class ParkDetails extends Component {
-    state={
-        lat:this.props.parks.latLong.split(" ")[0].slice(4,-1),
-        lng:this.props.parks.latLong.split(" ")[1].slice(5),
-        zoom:12
-    }
+const ParkDetails =(props)=> {
+        const [viewport, setViewport] = useState({
+            width: "100%",
+            height: 400,
+            latitude: parseFloat(props.parks.latLong.split(" ")[0].slice(4,-1)),
+            longitude: parseFloat(props.parks.latLong.split(" ")[1].slice(5)),
+            zoom: 16
+          });
 
-    componentDidMount() {
-        const map = new mapboxgl.Map({
-        container: this.mapContainer,
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [this.state.lng, this.state.lat],
-        zoom: this.state.zoom
-        });
-        map.on( () => {
-            this.setState({
-            lng: map.getCenter().lng.toFixed(4),
-            lat: map.getCenter().lat.toFixed(4),
-            zoom: map.getZoom().toFixed(2)
-            });
-        });
-    }
-
-
-
-    render() {
-        // debugger
-        return !this.props.parks ? null : (
+        return !props.parks ? null : (
             <div>
         <div className="parkDetailContainer">
             <div className="detailParkName">
-            {this.props.parks.fullName}
+            {props.parks.fullName}
             </div>
             <br/>
             <div className="media">
-            <img id="parkDetailImage" src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
+            <img id="parkDetailImage" src={randomPic(props.images)} alt={props.parks.fullName} />
                     <div className="media-body">
                         <div className="pTagBackground">
                         <h5 className="mt-0">Description of the Park</h5>
-                        <p>{this.props.parks.description}</p>
+                        <p>{props.parks.description}</p>
                     </div>
                 </div>
             </div>
             
-            {/* {this.props.parks.latLong} */}
+            {/* {props.parks.latLong} */}
             {/* Event modal */}
             <div className="eventContainer">
                 
                 <button id="eventButton" style={{margin:"2%", padding:"1%"}} type="button" className="btn btn-primary bg-success btn-lg" data-toggle="modal" data-target="#exampleModal3">
-                { this.props.parks.events.length !== 0 ? "Show Event" : "No Upcoming Events" }
+                { props.parks.events.length !== 0 ? "Show Event" : "No Upcoming Events" }
                 </button> 
             </div>
 
@@ -77,7 +61,7 @@ class ParkDetails extends Component {
                         </button>
                     </div>
                     <div className="modal-body">
-                    {this.props.parks.events.length === 0 ? <p>Sorry, but there are no events for this month.</p> : this.props.parks.events.map(event =>
+                    {props.parks.events.length === 0 ? <p>Sorry, but there are no events for this month.</p> : props.parks.events.map(event =>
                     <table className="table">
                         <thead className="thead-dark">
                             <tr>
@@ -115,24 +99,42 @@ class ParkDetails extends Component {
                 <div className="media-body" id="cardDetailSecondPandh5tag">
                     <div className="pTagBackground">
                         <h5 className="mt-0 mb-1">Weather Information</h5>
-                        <p>{this.props.parks.weatherInfo}</p>
+                        <p>{props.parks.weatherInfo}</p>
                     </div>
                 </div>
-                <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(this.props.images)} alt={this.props.parks.fullName} />
+                <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(props.images)} alt={props.parks.fullName} />
             </div>
            
             
-            <div className="directionText"> Location on Map  <a target="blank" href={`https://www.google.com/maps/place/${this.props.parks.fullName.replace(' ', '+')}`} >Direction</a> </div>
+            <div className="directionText"> Location on Map  <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/place/${props.parks.fullName.replace(' ', '+')}`} >Direction</a> </div>
         </div>
-            <div ref={el => this.mapContainer = el} className="mapContainer" />
+ 
+        <ReactMapGL
+        {...viewport}
+        mapboxApiAccessToken={process.env.REACT_APP_MAP_API_KEY}
+        mapStyle="mapbox://styles/mapbox/streets-v11"
+        // onViewportChange={viewport => {
+        //   setViewport(viewport);
+        // }}
+        >
+          <Marker
+            latitude={parseFloat(props.parks.latLong.split(" ")[0].slice(4,-1))}
+            longitude={parseFloat(props.parks.latLong.split(" ")[1].slice(5)) }
+          >
+            <button>
+              <img style={{width:"20px", height:"20px"}} src={maker} alt="Icon" />
+            </button>
+          </Marker>
+        </ReactMapGL>
+
         </div>
         );
     }
-}
+
 
 const mapStateToProps = (store, ownProps) => ({
     parks: store.parks.find(
-        park => {return park.fullName === ownProps.match.params.fullName}
+        park => {return (park.fullName === ownProps.match.params.fullName)}
     ),
     images: store.images
 })

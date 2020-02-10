@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 
 const loadingReducer = (oldState=false, action) => {
   switch (action.type) {
@@ -14,7 +14,24 @@ const loadingReducer = (oldState=false, action) => {
   }
 }
 
-const parkNameReducer = (oldState="please select park", action) => {
+const favoriteReducer = (oldState=[], action) =>{
+  // debugger
+  switch (action.type) {
+    case FAVORITE:  
+      return action.payload
+
+    //   if(painting.id !== action.payload){
+    //     return painting
+    //   }else{
+    //     return {...painting, votes: painting.votes + 1}
+    //   }
+    // })
+    default:
+      return oldState
+  }
+}
+
+const parkNameReducer = (oldState="", action) => {
   switch (action.type) {
     case PARK_NAME:
       return action.payload
@@ -76,9 +93,9 @@ const rootReducer = combineReducers({
     images: imageReducer,
     search: searchTextReducer,
     filter: filterStateReducer,
-    // user: usersReducer,
     loggedInUser: loggedInUserReducer,
-    parkName: parkNameReducer
+    parkName: parkNameReducer,
+    favorite : favoriteReducer
   })
 
 export default rootReducer

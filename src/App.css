@@ -1,6 +1,5 @@
 *{
 	font-size:18px;
-	
 }
 /* welcome.js */
 .welcomContainer{
@@ -50,7 +49,7 @@
 /* about.js */
 .imageInAbout{	
 	display: flex;	
-	/* flex-flow: row wrap; */	
+	flex-flow: row wrap;	
 	/* margin:auto; */	
 	justify-content: center;	
 }	
@@ -97,9 +96,7 @@
 }
 
 /* parkList */
-*{
-    font-family: 'Ubuntu', sans-serif;
-}
+
 .backgroundImg{
     background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
     box-shadow: inset 0 0 0 1000px rgba(247, 244, 244, 0.42);
