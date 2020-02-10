@@ -34,12 +34,14 @@ class ParkCard extends Component{
                 }
             }).then(
                 favoriteData => {
+                    // debugger
                    { this.props.favorite(favoriteData)}
                 })
             }
 
     render() {
         // debugger
+        // console.log(this.props.user.parks, this.props.park)
         return (
             <div>
             <div className="ui card">
@@ -57,8 +59,10 @@ class ParkCard extends Component{
                     </div>
                 </div>
                 <div className="extra content">
-                {this.props.visit !== false ? <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> :
-                    <button type="button" style={{padding:"5px 20px"}} className="btn btn-success">Visited</button> }
+                {this.props.user.favorites.map(favorite => favorite.park_id).includes(this.props.park.id) ?
+                     <button type="button" style={{padding:"5px 20px"}} className="btn btn-success">Visited</button> :
+                    <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> 
+                }
                 </div>
             </div>
             </div>
@@ -69,13 +73,13 @@ class ParkCard extends Component{
 
 const mapStateToProps = (store) => ({
     user: store.loggedInUser,
-    visit : store.favorite.visit
+    visit : store.favorite,
 })
 
-const mapDispatchToProps = dispath => {
+const mapDispatchToProps = dispatch => {
     return {
         favorite: (favoriteObj) => {
-            dispath(favorite(favoriteObj))
+            dispatch(favorite(favoriteObj))
         }
     }
 }

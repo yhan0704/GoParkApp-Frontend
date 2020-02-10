@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import ReactMapGL, {Marker} from 'react-map-gl';
 import maker from './15a524defc39fbdc84c8f3945546384d.png' 
 
-const API_KEY = process.env.REACT_APP_MAP_API_KEY
+// const API_KEY = process.env.REACT_APP_MAP_API_KEY
 // mapboxgl.accessToken = API_KEY;
 // import {withRouter} from 'react-router-dom'
 
@@ -17,12 +17,12 @@ function randomPic(images){
 }
 
 const ParkDetails =(props)=> {
-        const [viewport, setViewport] = useState({
+        const [viewport] = useState({
             width: "100%",
             height: 400,
             latitude: parseFloat(props.parks.latLong.split(" ")[0].slice(4,-1)),
             longitude: parseFloat(props.parks.latLong.split(" ")[1].slice(5)),
-            zoom: 16
+            zoom: 12
           });
 
         return !props.parks ? null : (

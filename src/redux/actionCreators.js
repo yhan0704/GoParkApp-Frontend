@@ -1,6 +1,7 @@
-import {FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {FETCHED_FAVORITE, FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
+const FAVORITE_URL = 'http://localhost:3000/favorites'
 
 function fetchedParks(parkssArray){
   return {type: FETCHED_PARKS, payload: parkssArray}
@@ -8,6 +9,10 @@ function fetchedParks(parkssArray){
 
 function filterState(filterState){
   return {type: FILTER_STATE, payload: filterState}
+}
+
+function fetchedFavorites(favorite){
+  return {type: FETCHED_FAVORITE, payload: favorite}
 }
 
 function favorite(favoriteObj){
@@ -67,6 +72,18 @@ function fetchingImages(){
   }
 }
 
+function fetchingFavorites(){
+  return (dispatch) => {
+    fetch(FAVORITE_URL)
+    .then(res => res.json())
+    .then(favoriteArray => {
+      // debugger
+      dispatch(fetchedFavorites(favoriteArray))
+    })
+  }
+}
+
+
 // function fetchingUsers(){
 //   return (dispatch) => {
 //     fetch(USERS_URL)
@@ -77,4 +94,4 @@ function fetchingImages(){
 //   }
 // }
 
-export {favorite, parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}
+export {fetchingFavorites, favorite, parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}

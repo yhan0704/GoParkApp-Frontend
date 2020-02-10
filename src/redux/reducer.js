@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {FETCHED_FAVORITE, FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 
 const loadingReducer = (oldState=false, action) => {
   switch (action.type) {
@@ -9,23 +9,23 @@ const loadingReducer = (oldState=false, action) => {
       return false
     case FETCHED_IMAGES:
       return false
+    case FETCHED_FAVORITE:
+      return false
     default:
       return oldState
   }
 }
 
-const favoriteReducer = (oldState=[], action) =>{
-  // debugger
+
+
+const favoriteReducer = (oldState={}, action) =>{
   switch (action.type) {
     case FAVORITE:  
-      return action.payload
-
-    //   if(painting.id !== action.payload){
-    //     return painting
-    //   }else{
-    //     return {...painting, votes: painting.votes + 1}
-    //   }
-    // })
+    // debugger
+    // console.log(oldState, action)
+    if(oldState.user.id === action.payload.user.id){
+      return {...oldState, ...action.payload}
+    }
     default:
       return oldState
   }
@@ -78,6 +78,17 @@ const parksReducer = (oldState=[], action) => {
   }
 }
 
+const fetchedFavoriteReducer = (oldState={}, action) => {
+  // debugger
+  switch(action.type){
+    case FETCHED_FAVORITE:
+      // debugger
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const imageReducer = (oldState=[], action) => {
   switch(action.type){
     case FETCHED_IMAGES:
@@ -95,7 +106,8 @@ const rootReducer = combineReducers({
     filter: filterStateReducer,
     loggedInUser: loggedInUserReducer,
     parkName: parkNameReducer,
-    favorite : favoriteReducer
+    favorite : favoriteReducer,
+    fetchedFavorite: fetchedFavoriteReducer
   })
 
 export default rootReducer
