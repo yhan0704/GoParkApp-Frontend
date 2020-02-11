@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 
 const Profile = props =>{
-    console.log(props)
+    console.log(props.user.favorites)
     return(
         <div>
           <form>
@@ -17,6 +17,9 @@ const Profile = props =>{
               </div>
             </div>
           </form>
+          <div>{props.user.favorites.map(favorite=>{
+            return favorite.park.fullName
+          })}</div>
         </div>
     )
 }

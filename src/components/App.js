@@ -21,7 +21,7 @@ class App extends Component {
   componentDidMount(){
     this.props.fetchingParks()
     this.props.fetchingImages()
-    this.props.fetchingFavorites()
+    // this.props.fetchingFavorites()
   }
   render() {
     // console.log(this.props)

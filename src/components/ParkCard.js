@@ -11,10 +11,6 @@ function formatState(states){
 }
 
 class ParkCard extends Component{
-    
-    state={
-        visit : false
-    }
 
     visitToggle = () =>{
         // debugger
@@ -32,10 +28,9 @@ class ParkCard extends Component{
                     swal("Congratulations!!!!! Your health improved!!", "Check your profile");
                     return res.json();
                 }
-            }).then(
-                favoriteData => {
+            }).then(favoriteData => {
                     // debugger
-                   { this.props.favorite(favoriteData)}
+                   this.props.favorite(favoriteData)
                 })
             }
 
@@ -60,8 +55,8 @@ class ParkCard extends Component{
                 </div>
                 <div className="extra content">
                 {this.props.user.favorites.map(favorite => favorite.park_id).includes(this.props.park.id) ?
-                     <button type="button" style={{padding:"5px 20px"}} className="btn btn-success">Visited</button> :
-                    <button type="button" style={{padding:"5px 20px"}} onClick={this.visitToggle} className="btn btn-danger">Visit</button> 
+                    <button type="button" style={{padding:"5px 20px"}}  className="btn btn-success">Visited</button> :
+                    <button type="button" style={{padding:"5px 20px"}}  onClick={this.visitToggle} className="btn btn-danger">Visit</button> 
                 }
                 </div>
             </div>

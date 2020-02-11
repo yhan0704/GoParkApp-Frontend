@@ -18,18 +18,16 @@ const loadingReducer = (oldState=false, action) => {
 
 
 
-const favoriteReducer = (oldState={}, action) =>{
-  switch (action.type) {
-    case FAVORITE:  
-    // debugger
-    // console.log(oldState, action)
-    if(oldState.user.id === action.payload.user.id){
-      return {...oldState, ...action.payload}
-    }
-    default:
-      return oldState
-  }
-}
+// const favoriteReducer = (oldState=[], action) =>{
+//   switch (action.type) {
+//     case FAVORITE:  
+//     // debugger
+//     // console.log(oldState, action)
+//       return [...oldState,  action.payload]
+//     default:
+//       return oldState
+//   }
+// }
 
 const parkNameReducer = (oldState="", action) => {
   switch (action.type) {
@@ -46,6 +44,13 @@ const loggedInUserReducer = (oldState=null, action) => {
       return action.payload
     case SIGN_OUT:
       return action.payload
+    case FAVORITE:
+      const add_favorite = {
+        ...oldState, favorites:[
+          ...oldState.favorites, action.payload
+        ]
+      }
+      return add_favorite
     default:
       return oldState
   }
@@ -78,16 +83,16 @@ const parksReducer = (oldState=[], action) => {
   }
 }
 
-const fetchedFavoriteReducer = (oldState={}, action) => {
-  // debugger
-  switch(action.type){
-    case FETCHED_FAVORITE:
-      // debugger
-      return action.payload
-    default:
-      return oldState
-  }
-}
+// const fetchedFavoriteReducer = (oldState={}, action) => {
+//   // debugger
+//   switch(action.type){
+//     case FETCHED_FAVORITE:
+//       // debugger
+//       return action.payload
+//     default:
+//       return oldState
+//   }
+// }
 
 const imageReducer = (oldState=[], action) => {
   switch(action.type){
@@ -106,8 +111,8 @@ const rootReducer = combineReducers({
     filter: filterStateReducer,
     loggedInUser: loggedInUserReducer,
     parkName: parkNameReducer,
-    favorite : favoriteReducer,
-    fetchedFavorite: fetchedFavoriteReducer
+    // favorite : favoriteReducer,
+    // fetchedFavorite: fetchedFavoriteReducer
   })
 
 export default rootReducer
