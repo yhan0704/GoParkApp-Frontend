@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-// import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
-// import mapboxgl from 'mapbox-gl';
 import ReactMapGL, {Marker} from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import maker from './15a524defc39fbdc84c8f3945546384d.png' 
 
 // const API_KEY = process.env.REACT_APP_MAP_API_KEY
@@ -16,6 +15,7 @@ function randomPic(images){
     return images.find(image => image.id === randomNum).image_url
 }
 
+let i = 1
 const ParkDetails =(props)=> {
         const [viewport] = useState({
             width: "100%",
@@ -62,7 +62,7 @@ const ParkDetails =(props)=> {
                     </div>
                     <div className="modal-body">
                     {props.parks.events.length === 0 ? <p>Sorry, but there are no events for this month.</p> : props.parks.events.map(event =>
-                    <table className="table">
+                    <table key={i++} className="table">
                         <thead className="thead-dark">
                             <tr>
                             <th>Contact Name</th>
@@ -108,14 +108,11 @@ const ParkDetails =(props)=> {
             
             <div className="directionText"> Location on Map  <a target="_blank" rel="noopener noreferrer" href={`https://www.google.com/maps/place/${props.parks.fullName.replace(' ', '+')}`} >Direction</a> </div>
         </div>
- 
+        
         <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAP_API_KEY}
         mapStyle="mapbox://styles/mapbox/streets-v11"
-        // onViewportChange={viewport => {
-        //   setViewport(viewport);
-        // }}
         >
           <Marker
             latitude={parseFloat(props.parks.latLong.split(" ")[0].slice(4,-1))}
@@ -126,7 +123,6 @@ const ParkDetails =(props)=> {
             </button>
           </Marker>
         </ReactMapGL>
-
         </div>
         );
     }

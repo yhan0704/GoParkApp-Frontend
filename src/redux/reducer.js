@@ -39,6 +39,7 @@ const parkNameReducer = (oldState="", action) => {
 }
 
 const loggedInUserReducer = (oldState=null, action) => {
+  // console.log(action.payload)
   switch(action.type){
     case LOGGED_IN:
       return action.payload
@@ -48,6 +49,8 @@ const loggedInUserReducer = (oldState=null, action) => {
       const add_favorite = {
         ...oldState, favorites:[
           ...oldState.favorites, action.payload
+        ], parks:[
+          ...oldState.parks, action.payload
         ]
       }
       return add_favorite
