@@ -15,6 +15,8 @@ import ParkList from './ParkList';
 import ParkDetails from './ParkDetails';
 
 
+
+
 class App extends Component {
 
   componentDidMount(){
@@ -24,8 +26,8 @@ class App extends Component {
   render() {
     // console.log(this.props)
     return (
+          
     <div className="App">
-      
       
          {this.props.user ? <Navbar /> : null}
         <Switch>
@@ -42,6 +44,7 @@ class App extends Component {
       <Footer />
       
     </div>
+          
     );
   }
 }

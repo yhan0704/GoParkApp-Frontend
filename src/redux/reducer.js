@@ -39,6 +39,7 @@ const loggedInUserReducer = (oldState=null, action) => {
       return add_favorite
 
     case ADD_COMMENTS:
+      // debugger
       const newState = {...oldState}
       newState.favorites = oldState.favorites.map(favorite => {
         if(favorite.id === action.payload.id){

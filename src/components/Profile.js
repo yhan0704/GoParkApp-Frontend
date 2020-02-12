@@ -4,27 +4,37 @@ import swal from 'sweetalert';
 import { withRouter} from 'react-router-dom';
 import {addComment} from '../redux/actionCreators'
 
+import DateFnsUtils from '@date-io/date-fns';
+import { DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 
 function formatState(states){
   let stateArray = states.split(',')
   return stateArray.filter(state => state === 'MD' || state === 'VA' || state === 'DC').join(", ")
 }
 
-
 class Profile extends Component{
+  
+  state={
+    selectedDate : new Date()
+  }
+
+  handleDateChange = (e) => {
+    debugger
+      this.setState({
+        selectedDate : e
+      })
+  }
+
   render() {
     let i = 1;
     let index=1;
-      
-  const onHandleSubmit = (e) =>{
-    // debugger
-    e.preventDefault()
-    let favoriteID = this.props.user.favorites.find(favorite => favorite.park_id === favorite.park.id).id
-    fetch(`http://localhost:3000/favorites/${favoriteID}`,{
+    const onHandleSubmit = (e, park) =>{
+    debugger
+    fetch(`http://localhost:3000/favorites/${park.id}`,{
       method: "PATCH",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-          park_id : this.props.parks.find(park=>(park.fullName==="Assateague Island National Seashore")).id,
+          park_id : this.props.parks.find(park=>(park.fullName===e.target.parentElement.parentElement.children[1].innerText)).id,
           user_id : this.props.user.id,
           comment : e.target.parentElement.firstElementChild.value
       })
@@ -37,9 +47,11 @@ class Profile extends Component{
              this.props.addComment(comment)
         })
   }
-  console.log(this.props.user.favorites)
-  debugger
-    return (
+  // console.log(this.props.user.favorites)
+  // debugger
+
+  return (
+    
       <div>
       <div className="profileContainer">
         <div className="userProfile">
@@ -74,21 +86,26 @@ class Profile extends Component{
               <th scope="row">{index++}</th>
               <td><a href={`/parklist/${park.park.fullName}`}>{park.park.fullName}</a></td>
               <td>{formatState(park.park.states)}</td>
-              <td><input className="profileDate" placeholder="date...."></input></td>
+              <td><MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <DatePicker value={this.state.selectedDate} onChange={this.handleDateChange} />
+                  </MuiPickersUtilsProvider></td>
               <td><input className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} />
-                <button onClick={onHandleSubmit}>Submit</button>
+                <button onClick={(e)=>onHandleSubmit(e, park)}>Submit</button>
               </td>
             </tr>
           </tbody>
         )}
         </table>
-        {!this.props.user.parks ? <div className="profileNoVisit">
+        {this.props.user.parks ? <div className="profileNoVisit">
           <p>There is no visit currently</p>
           <img src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif" alt="park"/>
-          </div> : null}
-          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
+          </div> : 
+           <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
+        }
+         
         </div>
       </div>
+      
     </div>
     );
   }
