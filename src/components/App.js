@@ -10,7 +10,6 @@ import ParkCard from "./ParkCard"
 import {connect} from 'react-redux'
 import {fetchingParks} from "../redux/actionCreators"
 import {fetchingImages} from "../redux/actionCreators"
-import {fetchingFavorites} from "../redux/actionCreators"
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import ParkList from './ParkList';
 import ParkDetails from './ParkDetails';
@@ -21,7 +20,6 @@ class App extends Component {
   componentDidMount(){
     this.props.fetchingParks()
     this.props.fetchingImages()
-    // this.props.fetchingFavorites()
   }
   render() {
     // console.log(this.props)
@@ -58,7 +56,6 @@ const mapStateToProps = state =>{
 const mapDispatchToProps = (dispatch) => ({
   fetchingParks: () => {dispatch(fetchingParks())},
   fetchingImages: () => {dispatch(fetchingImages())},
-  fetchingFavorites:() =>{dispatch(fetchingFavorites())}
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

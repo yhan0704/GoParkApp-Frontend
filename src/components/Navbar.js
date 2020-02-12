@@ -24,7 +24,7 @@ class Navbar extends Component{
                     </li>
                     </ul>
                     <div id="profileSignoutTag"className="d-flex justify-content-end">
-                        <a id="navOption" className="nav-link" href="/profile" style={{color:"black"}}>{this.props.user ? "Profile" : ""} </a>
+                        <a id="navOption" className="nav-link" href="/profile" style={{color:"black"}}>{this.props.user ? `${this.props.user.name}'Profile` : ""} </a>
                         <a id="navOption" className="nav-link" href="/login" onClick={() => {this.props.signOut(this.props.user)}} style={{color:"black"}} >{ this.props.user ?"Sign Out" : "" } </a>
                     </div>
                 </div>

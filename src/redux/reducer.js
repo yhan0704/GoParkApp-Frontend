@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {FETCHED_FAVORITE, FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {ADD_COMMENTS, FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 
 const loadingReducer = (oldState=false, action) => {
   switch (action.type) {
@@ -9,25 +9,10 @@ const loadingReducer = (oldState=false, action) => {
       return false
     case FETCHED_IMAGES:
       return false
-    case FETCHED_FAVORITE:
-      return false
     default:
       return oldState
   }
 }
-
-
-
-// const favoriteReducer = (oldState=[], action) =>{
-//   switch (action.type) {
-//     case FAVORITE:  
-//     // debugger
-//     // console.log(oldState, action)
-//       return [...oldState,  action.payload]
-//     default:
-//       return oldState
-//   }
-// }
 
 const parkNameReducer = (oldState="", action) => {
   switch (action.type) {
@@ -39,7 +24,6 @@ const parkNameReducer = (oldState="", action) => {
 }
 
 const loggedInUserReducer = (oldState=null, action) => {
-  // console.log(action.payload)
   switch(action.type){
     case LOGGED_IN:
       return action.payload
@@ -54,6 +38,21 @@ const loggedInUserReducer = (oldState=null, action) => {
         ]
       }
       return add_favorite
+
+    case ADD_COMMENTS:
+      // debugger
+      return oldState.favorites.map(favorite => {
+          if(favorite.id === action.payload.id){
+            // debugger
+            return {
+              ...favorite,
+              comment : action.payload.comment
+              }
+          }else{
+            return favorite
+          }
+        })
+
     default:
       return oldState
   }
@@ -86,17 +85,6 @@ const parksReducer = (oldState=[], action) => {
   }
 }
 
-// const fetchedFavoriteReducer = (oldState={}, action) => {
-//   // debugger
-//   switch(action.type){
-//     case FETCHED_FAVORITE:
-//       // debugger
-//       return action.payload
-//     default:
-//       return oldState
-//   }
-// }
-
 const imageReducer = (oldState=[], action) => {
   switch(action.type){
     case FETCHED_IMAGES:
@@ -114,8 +102,6 @@ const rootReducer = combineReducers({
     filter: filterStateReducer,
     loggedInUser: loggedInUserReducer,
     parkName: parkNameReducer,
-    // favorite : favoriteReducer,
-    // fetchedFavorite: fetchedFavoriteReducer
   })
 
 export default rootReducer

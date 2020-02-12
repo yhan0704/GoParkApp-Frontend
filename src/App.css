@@ -59,6 +59,19 @@
 	width:500px;
 }
 
+.profileNoVisit{
+	text-align: center;
+}
+.profileNoVisit p{
+	font-size:25px;
+	color:red;
+	text-align: center;
+	padding-bottom:3em;
+}
+.profileImageCenter{
+	text-align: center;
+}
+
 /* Event modal */
 .modal-dialog{
 	z-index:inherit;
@@ -127,9 +140,11 @@
 }
 .cardContainer{
     display: flex;
-    flex-flow: row wrap;
-    margin:auto;
-    margin-left:2%;
+	flex-flow: row wrap;
+	justify-content: center;
+	padding-bottom:2em;
+	/* margin-left:1em; */
+    /* margin-left:2%; */
 }
 
 #sizeNavBar{
@@ -169,17 +184,17 @@
 /*  */
 .ui.card{
     background-color: rgb(255, 245, 138);
-	width:200px;
+	width:400px;
 	height:420px; 
     margin:15px;  
 }
 
 #parkImage{
-    height:280px;
-    width:200px;
-    position:relative;
-    right:1px;
-    bottom:1px;
+	height:300px;
+	width:400px;
+	position:relative;
+	right:1px;
+	bottom:1px;
 }
 
 /* parkDetail */
