@@ -34,10 +34,10 @@ class Profile extends Component{
             return res.json();
         }
     }).then(comment => {
-              // debugger
              this.props.addComment(comment)
         })
   }
+  console.log(this.props.user.favorites)
   debugger
     return (
       <div>
@@ -67,25 +67,26 @@ class Profile extends Component{
               <th>Comments</th>
             </tr>
           </thead>
-        {!this.props.user.parks ? null :this.props.user.parks.map(park=> 
+        
+        {!this.props.user.favorites ? null :  this.props.user.favorites.map(park=> 
           <tbody key={i++}>
             <tr>
               <th scope="row">{index++}</th>
               <td><a href={`/parklist/${park.park.fullName}`}>{park.park.fullName}</a></td>
               <td>{formatState(park.park.states)}</td>
               <td><input className="profileDate" placeholder="date...."></input></td>
-              <td><input className="profileComment" placeholder="please leave your comments...."></input>
+              <td><input className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} />
                 <button onClick={onHandleSubmit}>Submit</button>
               </td>
             </tr>
           </tbody>
         )}
         </table>
-        <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
-        {/* {this.props.user.parks.length === 0 ? <div className="profileNoVisit">
+        {!this.props.user.parks ? <div className="profileNoVisit">
           <p>There is no visit currently</p>
           <img src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif" alt="park"/>
-          </div> : null} */}
+          </div> : null}
+          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
         </div>
       </div>
     </div>

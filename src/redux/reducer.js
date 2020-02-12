@@ -24,6 +24,7 @@ const parkNameReducer = (oldState="", action) => {
 }
 
 const loggedInUserReducer = (oldState=null, action) => {
+  // debugger
   switch(action.type){
     case LOGGED_IN:
       return action.payload
@@ -33,26 +34,23 @@ const loggedInUserReducer = (oldState=null, action) => {
       const add_favorite = {
         ...oldState, favorites:[
           ...oldState.favorites, action.payload
-        ], parks:[
-          ...oldState.parks, action.payload
         ]
       }
       return add_favorite
 
     case ADD_COMMENTS:
-      // debugger
-      return oldState.favorites.map(favorite => {
-          if(favorite.id === action.payload.id){
-            // debugger
+      const newState = {...oldState}
+      newState.favorites = oldState.favorites.map(favorite => {
+        if(favorite.id === action.payload.id){
             return {
               ...favorite,
-              comment : action.payload.comment
-              }
+              comment : action.payload.comment,
+            }
           }else{
             return favorite
           }
         })
-
+        return newState
     default:
       return oldState
   }
