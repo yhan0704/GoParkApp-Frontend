@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import swal from 'sweetalert';
 import { withRouter} from 'react-router-dom';
 import {addComment} from '../redux/actionCreators'
+import {filterCalendar} from '../redux/actionCreators'
 
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
@@ -13,23 +14,29 @@ function formatState(states){
 }
 
 class Profile extends Component{
-  
-  state={
-    selectedDate : new Date()
-  }
 
-  handleDateChange = (e) => {
-    debugger
-      this.setState({
-        selectedDate : e
+  handleDateChange = (e, park) => {
+    fetch(`http://localhost:3000/favorites/${park.id}`,{
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+          date : e
       })
+      }).then(res => {
+        if(res.ok){
+            swal("Visted date saved successfully");
+            return res.json();
+        }
+    }).then(calendar => {
+       this.props.filterCalendar(calendar)
+    }
+    )
   }
 
   render() {
     let i = 1;
     let index=1;
     const onHandleSubmit = (e, park) =>{
-    debugger
     fetch(`http://localhost:3000/favorites/${park.id}`,{
       method: "PATCH",
       headers: {"Content-Type": "application/json"},
@@ -40,16 +47,16 @@ class Profile extends Component{
       })
       }).then(res => {
         if(res.ok){
-            swal("Congratulations!!!!! Your health improved!!", "Check your profile");
+            swal("Your comment saved successfully");
             return res.json();
         }
     }).then(comment => {
              this.props.addComment(comment)
         })
   }
-  // console.log(this.props.user.favorites)
+  
   // debugger
-
+  // console.log(this.props.user.favorites)
   return (
     
       <div>
@@ -57,13 +64,13 @@ class Profile extends Component{
         <div className="userProfile">
         <form>
           <div id="userProfileTable" className="form-group row">
-            <label htmlFor="inputEmail3"  className="col-form-label">User Name</label>
+            <label htmlFor="inputEmail3" className="col-form-label">User Name</label>
             <div className="col-sm-10">
-              <input type="text" id="username" style={{marginBottom:"1em"}} disabled value={this.props.user.name} />
+              <input type="text" id="username" style={{width:"250px", marginBottom:"1em"}} disabled value={this.props.user.name} />
             </div>
-            <label htmlFor="inputEmail3"  className=" col-form-label">User Email</label>
+            <label htmlFor="inputEmail3"   className=" col-form-label">User Email</label>
             <div className="col-sm-10">
-              <input type="text" id="useremail" disabled value={this.props.user.email} />
+              <input type="text" id="useremail" style={{width:"350px"}} disabled value={this.props.user.email} />
             </div>
           </div>
         </form>
@@ -87,22 +94,25 @@ class Profile extends Component{
               <td><a href={`/parklist/${park.park.fullName}`}>{park.park.fullName}</a></td>
               <td>{formatState(park.park.states)}</td>
               <td><MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker value={this.state.selectedDate} onChange={this.handleDateChange} />
+                    <DatePicker value={park.date} onChange={(e) => this.handleDateChange(e, park)} />
                   </MuiPickersUtilsProvider></td>
-              <td><input className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} />
-                <button onClick={(e)=>onHandleSubmit(e, park)}>Submit</button>
-              </td>
+              <td><textarea className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} /></td>
+              <td><button style={{marginTop:"0.3em"}} onClick={(e)=>onHandleSubmit(e, park)}>Submit</button></td>
             </tr>
           </tbody>
         )}
         </table>
-        {this.props.user.parks ? <div className="profileNoVisit">
-          <p>There is no visit currently</p>
+        {
+          this.props.user.favorites.length !== 0 ? 
+          <div className="profileVisit">
+          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
+          </div> 
+          : 
+          <div className="profileNoVisit">
+          <p style={{fontSize:"30px"}}>There is no visit currently</p>
           <img src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif" alt="park"/>
-          </div> : 
-           <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
+          </div>
         }
-         
         </div>
       </div>
       
@@ -122,6 +132,9 @@ const mapStateToProps = state =>{
     return {
       addComment: (comment) => {
             dispatch(addComment(comment))
+        },
+        filterCalendar: (calendar) => {
+          dispatch(filterCalendar(calendar))
         }
     }
 }

@@ -19,6 +19,9 @@ class About extends Component{
                 <img src="https://picsum.photos/400/500?random=2" alt="tree" />	
                 <img src="https://picsum.photos/400/500?random=3" alt="tree" />	
                 <img src="https://picsum.photos/400/500?random=4" alt="tree" />	
+                <img src="https://picsum.photos/400/500?random=5" alt="tree" />	
+                <img src="https://picsum.photos/400/500?random=6" alt="tree" />	
+
                 </div>	
                 <div className="svgImageAbout">	
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQB7l0h9gYAAUKXTApfgb8X1iZSvEWtqmMZjv76AsYVee6O-2a4" alt="tree" />	

@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {ADD_COMMENTS, FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {CALENDAR, ADD_COMMENTS, FAVORITE, PARK_NAME, FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES,CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 
 const loadingReducer = (oldState=false, action) => {
   switch (action.type) {
@@ -37,23 +37,38 @@ const loggedInUserReducer = (oldState=null, action) => {
         ]
       }
       return add_favorite
-
-    case ADD_COMMENTS:
-      // debugger
-      const newState = {...oldState}
-      newState.favorites = oldState.favorites.map(favorite => {
-        if(favorite.id === action.payload.id){
-            return {
-              ...favorite,
-              comment : action.payload.comment,
-            }
-          }else{
-            return favorite
+    
+  case CALENDAR:
+    // debugger
+    const newCalendarState = {...oldState}
+    newCalendarState.favorites = oldState.favorites.map(favorite => {
+      if(favorite.id === action.payload.id){
+          return {
+            ...favorite,
+            date : action.payload.date,
           }
-        })
-        return newState
-    default:
-      return oldState
+        }else{
+          return favorite
+        }
+      })
+  return newCalendarState
+
+  case ADD_COMMENTS:
+    // debugger
+    const newState = {...oldState}
+    newState.favorites = oldState.favorites.map(favorite => {
+      if(favorite.id === action.payload.id){
+          return {
+            ...favorite,
+            comment : action.payload.comment,
+          }
+        }else{
+          return favorite
+        }
+      })
+      return newState
+  default:
+    return oldState
   }
 }
 

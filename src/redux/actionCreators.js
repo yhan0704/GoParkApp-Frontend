@@ -1,4 +1,4 @@
-import {ADD_COMMENTS, FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
+import {CALENDAR, ADD_COMMENTS, FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
 const URL = 'http://localhost:3000/parks'
 const IMAGE_URL = 'http://localhost:3000/park_images'
 
@@ -8,6 +8,10 @@ function fetchedParks(parkssArray){
 
 function filterState(filterState){
   return {type: FILTER_STATE, payload: filterState}
+}
+
+function filterCalendar(filterCalendar){
+  return {type: CALENDAR, payload: filterCalendar}
 }
 
 function addComment(comments){
@@ -66,4 +70,4 @@ function fetchingImages(){
   }
 }
 
-export {addComment, favorite, parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}
+export {filterCalendar, addComment, favorite, parkName, fetchingParks, fetchingImages, onSearch, filterState, loggedIn, signOut}
