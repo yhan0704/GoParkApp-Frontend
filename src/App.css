@@ -8,6 +8,13 @@
 	padding-top:8em;	
 	padding-bottom:8em;
 }
+.welcomeBackground{
+	background-image: url("https://images.unsplash.com/photo-1444488694761-b033d54b1c46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
+	box-shadow: inset 0 0 0 1000px rgba(80, 80, 96, 0.42);
+	background-size: cover;
+	background-position: center;
+
+}
 
 /* main page */
 #mainBackGround{
@@ -39,6 +46,11 @@
 }
 
 /* profile.js */
+
+.profileBackground{
+	background-color: rgba(77, 47, 2, 0.221);
+}
+
 .profileContainer{
 	padding-bottom:2em;
 	margin: 0 6em;
@@ -46,7 +58,7 @@
 
 .MuiInputBase-input.MuiInput-input{
 	font-size: 13px;
-	width:70px;
+	width:90px;
 }
 
 #userProfileTable{
@@ -64,7 +76,7 @@
 }
 
 .profileComment{
-	width:400px;
+	width:350px;
 	height: 40px;
 }
 
@@ -194,10 +206,12 @@
     background-color: rgb(255, 245, 138);
 	width:400px;
 	height:420px; 
-    margin:15px;  
+	margin:15px;  
+	border-radius: 10%;
 }
 
 #parkImage{
+	border-radius: 10%;
 	height:300px;
 	width:400px;
 	position:relative;
@@ -212,7 +226,8 @@
     font-weight: bold;
 }
 .pTagBackground{
-	background-color: lightgrey;
+	border-radius: 15%;
+	background-color: rgb(153, 165, 134);
 	margin-right: 4em;
 	padding:1.2em
 }
@@ -224,22 +239,25 @@
     background-size: cover;
 }
 
-#seconImgDetail{
+#secondImgDetail{
 	padding-top:0;
+	height:300px;
+	width:500px;
+	padding-right:3%;
 }
 
 #parkDetailImage{
-    height:250px;
-    width:400px;
+    height:300px;
+    width:500px;
     margin: 0 3% 3% 3%;
 }
 
-.d-flex.ml-3{
+/* .d-flex.ml-3{
     height:300px;
     width:400px;
 	padding:0% 2% 2% 0%;
 
-}
+} */
 .parkDetailContainer h5{
     padding-top:0;
 	font-weight: bold;
@@ -249,7 +267,7 @@
     font-size: 20px;
 }
 #cardDetailSecondPandh5tag{
-	padding-left:3.5%;
+	padding-left:2%;
 }
 
 .directionText{

@@ -52,6 +52,7 @@ class Welcome extends Component {
 
     render() {
         return (
+            <div className="welcomeBackground">
             <div className="welcomContainer">
                 <div className="row" style={{width:"100%"}}>
                     <div className="col-md-6 col-md-offset-3">
@@ -162,7 +163,7 @@ class Welcome extends Component {
                     </div>
                 </div>
             </div>
-            
+        </div>
         );
     }
 }

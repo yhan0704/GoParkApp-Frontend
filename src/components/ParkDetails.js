@@ -98,7 +98,7 @@ const ParkDetails =(props)=> {
                         <p>{props.parks.weatherInfo}</p>
                     </div>
                 </div>
-                <img className="d-flex ml-3" id="seconImgDetail"src={randomPic(props.images)} alt={props.parks.fullName} />
+                <img id="secondImgDetail" src={randomPic(props.images)} alt={props.parks.fullName} />
             </div>
            
             

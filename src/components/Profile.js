@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import swal from 'sweetalert';
 import { withRouter} from 'react-router-dom';
 import {addComment} from '../redux/actionCreators'
+import moment from 'moment'
 import {filterCalendar} from '../redux/actionCreators'
 
 import DateFnsUtils from '@date-io/date-fns';
@@ -59,7 +60,7 @@ class Profile extends Component{
   // console.log(this.props.user.favorites)
   return (
     
-      <div>
+      <div className="profileBackground">
       <div className="profileContainer">
         <div className="userProfile">
         <form>
@@ -94,7 +95,9 @@ class Profile extends Component{
               <td><a href={`/parklist/${park.park.fullName}`}>{park.park.fullName}</a></td>
               <td>{formatState(park.park.states)}</td>
               <td><MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <DatePicker value={park.date} onChange={(e) => this.handleDateChange(e, park)} />
+                  {park.date === null ?
+                    <DatePicker value={moment(new Date()).format("YYYY-MM-DD")} onChange={(e) => this.handleDateChange(e, park)} />  : 
+                    <DatePicker value={park.date} onChange={(e) => this.handleDateChange(e, park)} />}
                   </MuiPickersUtilsProvider></td>
               <td><textarea className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} /></td>
               <td><button style={{marginTop:"0.3em"}} onClick={(e)=>onHandleSubmit(e, park)}>Submit</button></td>
@@ -109,7 +112,7 @@ class Profile extends Component{
           </div> 
           : 
           <div className="profileNoVisit">
-          <p style={{fontSize:"30px"}}>There is no visit currently</p>
+          <p style={{fontSize:"30px"}}>There is no visit any Park currently</p>
           <img src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif" alt="park"/>
           </div>
         }
