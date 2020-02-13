@@ -33,18 +33,19 @@ class Profile extends Component{
     }
     )
   }
-
+  
   render() {
     let i = 1;
     let index=1;
     const onHandleSubmit = (e, park) =>{
+      debugger
     fetch(`http://localhost:3000/favorites/${park.id}`,{
       method: "PATCH",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
           park_id : this.props.parks.find(park=>(park.fullName===e.target.parentElement.parentElement.children[1].innerText)).id,
           user_id : this.props.user.id,
-          comment : e.target.parentElement.firstElementChild.value
+          comment : e.target.parentElement.parentElement.children[4].firstChild.value
       })
       }).then(res => {
         if(res.ok){

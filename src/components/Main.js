@@ -21,10 +21,10 @@ class Main extends Component{
             <div id="mainBackGround">
                 <div className="goparkWord">
                 <p>Go Park</p>
-                <p style={{fontSize:"60px"}}>DMV Aears</p>
+                <p style={{fontSize:"40px"}}>DMV Aears</p>
                 </div>
                 <div className="parkMenubar">
-                        <p style={{color:"white", fontSize:"60px"}}>Find your Park :)</p> 
+                        <p style={{color:"white", fontSize:"50px"}}>Find your Park :)</p> 
                     <select className="selectInMain" onChange={(e) => this.props.parkName(e.target.value)}>
                         <option value="Choose here" defaultValue hidden >Please feel free to search your favorite Park</option>
                         {alphabetOrder(removeDuplicadtePark(this.props.parks)).filter(park => park.latLong.length !==0).map(park =>

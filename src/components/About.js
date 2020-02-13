@@ -10,9 +10,9 @@ class About extends Component{
                     <p className="aboutPtagTextCenter">Welcome to Go Park - build up where you went to the park. There are planty of park near DMV area.</p>
                 </div>
                 <div className="aboutMainText">
-                    Thank you for visiting our website. We are encourage that you go to park since health is important these days. 
-                    There are a lot of park in DMV area. Go all of the park and click visied button on park tag. 
-                    After you visit all of parks, you will satisfied yourself!
+                    Thank you for visiting our website. We encourage you to go to parks since health is important. 
+                    There are a lot of parks in the DMV area. Go visit these parks and click the visited button on the park tag. 
+                    After you visit all of the parks, you will have satisfied yourself!
                 </div>
                 <div className="imageInAbout">	
                 <img src="https://picsum.photos/400/500?random=1" alt="tree" />	
