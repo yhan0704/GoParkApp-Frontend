@@ -21,7 +21,7 @@ class Footer extends Component {
         </p>
           <hr/>
         <p>
-          Having trouble? contact  <a style={{color:"lightblue"}}href="mailto:yhan1205@gmail.com">Go Park</a>.
+          Having trouble? contact  <a style={{color:"lightblue"}}href="mailto:yhan1205@gmail.com">Go Park</a>
         </p>
       </div>
       

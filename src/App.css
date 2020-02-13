@@ -46,14 +46,19 @@
 }
 
 /* profile.js */
-
-.profileBackground{
-	background-color: rgba(77, 47, 2, 0.221);
+.particles{
+	position:absolute;
 }
-
 .profileContainer{
 	padding-bottom:2em;
 	margin: 0 6em;
+	/* position:inherit; */
+}
+
+.profileBackground canvas {
+	position:absolute;
+	z-index:-1;
+	height:150%;
 }
 
 .MuiInputBase-input.MuiInput-input{

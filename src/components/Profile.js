@@ -5,9 +5,9 @@ import { withRouter} from 'react-router-dom';
 import {addComment} from '../redux/actionCreators'
 import moment from 'moment'
 import {filterCalendar} from '../redux/actionCreators'
-
 import DateFnsUtils from '@date-io/date-fns';
 import { DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
+import ParticlesContainer from './ParticlesContainer';
 
 function formatState(states){
   let stateArray = states.split(',')
@@ -60,8 +60,9 @@ class Profile extends Component{
   // debugger
   // console.log(this.props.user.favorites)
   return (
-    
-      <div className="profileBackground">
+    // <div>
+    <div className="profileBackground">
+    <ParticlesContainer className="particles"></ParticlesContainer>
       <div className="profileContainer">
         <div className="userProfile">
         <form>
@@ -109,7 +110,7 @@ class Profile extends Component{
         {
           this.props.user.favorites.length !== 0 ? 
           <div className="profileVisit">
-          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1658&q=80" alt="park"/>
+          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://picsum.photos/400/500?random=1" alt="park"/>
           </div> 
           : 
           <div className="profileNoVisit">
