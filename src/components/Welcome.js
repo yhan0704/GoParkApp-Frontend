@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {loggedIn} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 import { withRouter} from 'react-router-dom';
+import swal from 'sweetalert';
 
 class Welcome extends Component {
     state = {
@@ -46,6 +47,7 @@ class Welcome extends Component {
             }).then(res => {
                 if(res.ok){
                     this.props.history.push(window.location.reload())
+                    swal("Created your account, Please log in.");
                 }
             })
             }

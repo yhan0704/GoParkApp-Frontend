@@ -64,7 +64,7 @@ const ParticlesContainer = () =>{
             }
         }} 
         style={{
-            backgroundColor: "lightblue" ,
+            backgroundColor: "#2F4F4F" ,
             position:"absolute",
             top:0,
             left:0,
