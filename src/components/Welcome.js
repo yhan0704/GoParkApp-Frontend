@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {loggedIn} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 import { withRouter} from 'react-router-dom';
-import swal from 'sweetalert';
 
 class Welcome extends Component {
     state = {
@@ -26,8 +25,15 @@ class Welcome extends Component {
                 username: this.state.username, 
                 password: this.state.password
             })
-            }).then(res => res.json())
-            .then(loggedInUser =>{
+            }).then(res => {
+                if(res.ok){
+                    alert("Log In successful");
+                    return res.json()
+                }else{
+                    alert("Username or Password is incorrect")
+                    this.props.history.push(window.location.reload())
+                }
+            }).then(loggedInUser =>{
                 this.props.loggedIn(loggedInUser)
             })
         }
@@ -46,8 +52,10 @@ class Welcome extends Component {
             })
             }).then(res => {
                 if(res.ok){
+                    alert("Created your account, Please log in.");
                     this.props.history.push(window.location.reload())
-                    swal("Created your account, Please log in.");
+                }else{
+                    alert("User or Email is already exist")
                 }
             })
             }
