@@ -29,6 +29,7 @@ const loggedInUserReducer = (oldState=null, action) => {
     case LOGGED_IN:
       return action.payload
     case SIGN_OUT:
+        // localStorage.clear(action.payload)
       return action.payload
     case FAVORITE:
       const add_favorite = {
