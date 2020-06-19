@@ -1,4 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Inform Park near the DMV areas and Keep tracking which Park you have been. (Flatiron - Single project)
+### Fetched “Park API” back-end(Ruby on Rails) and use API front end(Redux, React) / Stylish(CSS, Bootstrap). 
+### Users can search one of the parks on the main page to see the detail page. In the detail page, Users can see the description and 
+### weather of the park, map, and direction. On the profile page, the user chooses the visited ### date on the calendar and leaves the ### comment about the park.
 
 ## Available Scripts
 
