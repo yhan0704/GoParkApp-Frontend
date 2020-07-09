@@ -637,6 +637,12 @@ body,
   #userProfileTable .col-sm-10 input {
     width: 250px;
   }
+  .profileImageCenter .profileNoVisit img {
+    width:100%
+  }
+  .profileImageCenter .profileVisit img {
+    width:100%
+  }
 }
 
 @media (max-width: 415px) {
