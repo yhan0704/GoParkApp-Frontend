@@ -8,7 +8,7 @@ Users can search one of the parks on the main page to see the detail page. In th
 * npm i
 * mapbox Token
 
-### git user update 
+### git origin update for heroku
 * heroku git:remote -a YourAppName
 
 react-super-responsive-table

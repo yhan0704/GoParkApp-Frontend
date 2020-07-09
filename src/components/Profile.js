@@ -20,7 +20,7 @@ function formatState(states) {
 
 class Profile extends Component {
   handleDateChange = (e, park) => {
-    fetch(`http://127.0.0.1:3000/favorites/${park.id}`, {
+    fetch(`https://parkback.herokuapp.com/favorites/${park.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -43,7 +43,7 @@ class Profile extends Component {
     let index = 1;
     const onHandleSubmit = (e, park) => {
       debugger;
-      fetch(`http://127.0.0.1:3000/favorites/${park.id}`, {
+      fetch(`https://parkback.herokuapp.com/favorites/${park.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

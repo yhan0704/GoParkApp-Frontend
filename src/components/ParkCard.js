@@ -16,7 +16,7 @@ class ParkCard extends Component {
   visitToggle = () => {
     // debugger
     // e.preventDefault()
-    fetch("http://127.0.0.1:3000/favorites", {
+    fetch("https://parkback.herokuapp.com/favorites", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

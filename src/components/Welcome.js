@@ -18,7 +18,7 @@ class Welcome extends Component {
   handleLoginSubmit = (e) => {
     e.preventDefault();
     // console.log("log in clicked")
-    fetch("http://127.0.0.1:3000/login", {
+    fetch("https://parkback.herokuapp.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -43,7 +43,7 @@ class Welcome extends Component {
   handleSignUpSubmit = (e) => {
     // debugger
     e.preventDefault();
-    fetch("http://127.0.0.1:3000/users", {
+    fetch("https://parkback.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
