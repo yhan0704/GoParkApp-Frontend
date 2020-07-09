@@ -18,7 +18,7 @@ class Main extends Component{
     render() {
         // console.log(this.props.parkName)
         return (
-            <div id="mainBackGround">
+            <div id="mainContainer">
                 <div className="goparkWord">
                 <p>Go Park</p>
                 <p style={{fontSize:"40px"}}>DMV Aears</p>

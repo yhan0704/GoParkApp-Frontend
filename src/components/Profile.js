@@ -1,148 +1,210 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux'
-import swal from 'sweetalert';
-import { withRouter} from 'react-router-dom';
-import {addComment} from '../redux/actionCreators'
-import moment from 'moment'
-import {filterCalendar} from '../redux/actionCreators'
-import DateFnsUtils from '@date-io/date-fns';
-import { DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
-import ParticlesContainer from './ParticlesContainer';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import swal from "sweetalert";
+import { withRouter } from "react-router-dom";
+import { addComment } from "../redux/actionCreators";
+import moment from "moment";
+import { filterCalendar } from "../redux/actionCreators";
+import DateFnsUtils from "@date-io/date-fns";
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import ParticlesContainer from "./ParticlesContainer";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
-function formatState(states){
-  let stateArray = states.split(',')
-  return stateArray.filter(state => state === 'MD' || state === 'VA' || state === 'DC').join(", ")
+function formatState(states) {
+  let stateArray = states.split(",");
+  return stateArray
+    .filter((state) => state === "MD" || state === "VA" || state === "DC")
+    .join(", ");
 }
 
-class Profile extends Component{
-
+class Profile extends Component {
   handleDateChange = (e, park) => {
-    fetch(`https://parkback.herokuapp.com/favorites/${park.id}`,{
+    fetch(`http://127.0.0.1:3000/favorites/${park.id}`, {
       method: "PATCH",
-      headers: {"Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-          date : e
-      })
-      }).then(res => {
-        if(res.ok){
-            swal("Visted date saved successfully");
-            return res.json();
+        date: e,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          swal("Visted date saved successfully");
+          return res.json();
         }
-    }).then(calendar => {
-       this.props.filterCalendar(calendar)
-    }
-    )
-  }
-  
+      })
+      .then((calendar) => {
+        this.props.filterCalendar(calendar);
+      });
+  };
+
   render() {
     let i = 1;
-    let index=1;
-    const onHandleSubmit = (e, park) =>{
-      debugger
-    fetch(`https://parkback.herokuapp.com/favorites/${park.id}`,{
-      method: "PATCH",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-          park_id : this.props.parks.find(park=>(park.fullName===e.target.parentElement.parentElement.children[1].innerText)).id,
-          user_id : this.props.user.id,
-          comment : e.target.parentElement.parentElement.children[4].firstChild.value
+    let index = 1;
+    const onHandleSubmit = (e, park) => {
+      debugger;
+      fetch(`http://127.0.0.1:3000/favorites/${park.id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          park_id: this.props.parks.find(
+            (park) =>
+              park.fullName ===
+              e.target.parentElement.parentElement.children[1].innerText
+          ).id,
+          user_id: this.props.user.id,
+          comment:
+            e.target.parentElement.parentElement.children[4].firstChild.value,
+        }),
       })
-      }).then(res => {
-        if(res.ok){
+        .then((res) => {
+          if (res.ok) {
             swal("Your comment saved successfully");
             return res.json();
-        }
-    }).then(comment => {
-             this.props.addComment(comment)
+          }
         })
-  }
-  
-  // debugger
-  // console.log(this.props.user.favorites)
-  return (
-    // <div>
-    <div className="profileBackground">
-    <ParticlesContainer className="particles"></ParticlesContainer>
-      <div className="profileContainer">
-        <div className="userProfile">
-        <form>
-          <div id="userProfileTable" className="form-group row">
-            <label htmlFor="inputEmail3" className="col-form-label">User Name</label>
-            <div className="col-sm-10">
-              <input type="text" id="username" style={{width:"250px", marginBottom:"1em"}} disabled value={this.props.user.name} />
-            </div>
-            <label htmlFor="inputEmail3"   className=" col-form-label">User Email</label>
-            <div className="col-sm-10">
-              <input type="text" id="useremail" style={{width:"350px"}} disabled value={this.props.user.email} />
-            </div>
+        .then((comment) => {
+          this.props.addComment(comment);
+        });
+    };
+
+    return (
+      <div className="profileBackground">
+        <div className="profileContainer">
+          <div className="userProfile">
+            <form>
+              <div id="userProfileTable" className="form-group row">
+                <label htmlFor="inputEmail3" className="col-form-label">
+                  User Name
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    id="username"
+                    disabled
+                    value={this.props.user.name}
+                  />
+                </div>
+                <label htmlFor="inputEmail3" className=" col-form-label">
+                  User Email
+                </label>
+                <div className="col-sm-10">
+                  <input
+                    type="text"
+                    id="useremail"
+                    disabled
+                    value={this.props.user.email}
+                  />
+                </div>
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
-        <div className="profileImageCenter">
-          <table style={{textAlign:"initial"}} className="table table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Park Name</th>
-              <th>Park State</th>
-              <th>Visited Date</th>
-              <th>Comments</th>
-            </tr>
-          </thead>
-        
-        {!this.props.user.favorites ? null :  this.props.user.favorites.map(park=> 
-          <tbody key={i++}>
-            <tr>
-              <th scope="row">{index++}</th>
-              <td><a href={`/parklist/${park.park.fullName}`}>{park.park.fullName}</a></td>
-              <td>{formatState(park.park.states)}</td>
-              <td><MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  {park.date === null ?
-                    <DatePicker value={moment(new Date()).format("YYYY-MM-DD")} onChange={(e) => this.handleDateChange(e, park)} />  : 
-                    <DatePicker value={park.date} onChange={(e) => this.handleDateChange(e, park)} />}
-                  </MuiPickersUtilsProvider></td>
-              <td><textarea className="profileComment" placeholder="please leave your comments...." defaultValue={park.comment} /></td>
-              <td><button style={{marginTop:"0.3em"}} onClick={(e)=>onHandleSubmit(e, park)}>Submit</button></td>
-            </tr>
-          </tbody>
-        )}
-        </table>
-        {
-          this.props.user.favorites.length !== 0 ? 
-          <div className="profileVisit">
-          <img style={{ marginTop:"2em", marginBottom:"2em", width:"900px", height:"400px"}}src="https://picsum.photos/400/500?random=1" alt="park"/>
-          </div> 
-          : 
-          <div className="profileNoVisit">
-          <p style={{fontSize:"30px"}}>There is no visit any Park currently</p>
-          <img src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif" alt="park"/>
+          <div className="profileImageCenter">
+            <Table className="table table-hover">
+              <Thead>
+                <Tr>
+                  <Th>#</Th>
+                  <Th>Park Name</Th>
+                  <Th>Park State</Th>
+                  <Th>Visited Date</Th>
+                  <Th>Comments</Th>
+                </Tr>
+              </Thead>
+
+              {!this.props.user.favorites
+                ? null
+                : this.props.user.favorites.map((park) => (
+                    <Tbody key={i++}>
+                      <Tr>
+                        <Th scope="row">{index++}</Th>
+                        <Td>
+                          <a href={`/parklist/${park.park.fullName}`}>
+                            {park.park.fullName}
+                          </a>
+                        </Td>
+                        <Td>{formatState(park.park.states)}</Td>
+                        <Td>
+                          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            {park.date === null ? (
+                              <DatePicker
+                                value={moment(new Date()).format("YYYY-MM-DD")}
+                                onChange={(e) => this.handleDateChange(e, park)}
+                              />
+                            ) : (
+                              <DatePicker
+                                value={park.date}
+                                onChange={(e) => this.handleDateChange(e, park)}
+                              />
+                            )}
+                          </MuiPickersUtilsProvider>
+                        </Td>
+                        <Td>
+                          <textarea
+                            className="profileComment"
+                            placeholder="Comments"
+                            defaultValue={park.comment}
+                          />
+                        </Td>
+                        <Td>
+                          <button
+                            style={{ marginTop: "0.3em" }}
+                            onClick={(e) => onHandleSubmit(e, park)}
+                          >
+                            Submit
+                          </button>
+                        </Td>
+                      </Tr>
+                    </Tbody>
+                  ))}
+            </Table>
+            {this.props.user.favorites.length !== 0 ? (
+              <div className="profileVisit">
+                <img
+                  style={{
+                    marginLeft:"5%",
+                    marginRight:"5%",
+                    height: "400px",
+                  }}
+                  src="https://picsum.photos/400/500?random=1"
+                  alt="park"
+                />
+              </div>
+            ) : (
+              <div className="profileNoVisit">
+                <p style={{ fontSize: "30px" }}>
+                  There is no visit any Park currently
+                </p>
+                <img
+                  src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif"
+                  alt="park"
+                />
+              </div>
+            )}
           </div>
-        }
         </div>
+        <ParticlesContainer className="particles"></ParticlesContainer>
       </div>
-      
-    </div>
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    parks: state.parks,
+    user: state.loggedInUser,
+  };
+};
 
-const mapStateToProps = state =>{
-    return {
-      parks:state.parks,
-      user :state.loggedInUser
-    }
-  }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addComment: (comment) => {
+      dispatch(addComment(comment));
+    },
+    filterCalendar: (calendar) => {
+      dispatch(filterCalendar(calendar));
+    },
+  };
+};
 
-  const mapDispatchToProps = dispatch => {
-    return {
-      addComment: (comment) => {
-            dispatch(addComment(comment))
-        },
-        filterCalendar: (calendar) => {
-          dispatch(filterCalendar(calendar))
-        }
-    }
-}
-
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Profile)
+);

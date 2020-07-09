@@ -1,6 +1,6 @@
 import {CALENDAR, ADD_COMMENTS, FAVORITE, PARK_NAME,FETCHED_PARKS, LOADING_PARKS, FETCHED_IMAGES, CHANGING_SEARCH_TEXT, FILTER_STATE, SIGN_OUT, LOGGED_IN} from './actionType'
-const URL = 'https://parkback.herokuapp.com/parks'
-const IMAGE_URL = 'https://parkback.herokuapp.com/park_images'
+const URL = 'http://127.0.0.1:3000/parks'
+const IMAGE_URL = 'http://127.0.0.1:3000/park_images'
 
 function fetchedParks(parkssArray){
   return {type: FETCHED_PARKS, payload: parkssArray}

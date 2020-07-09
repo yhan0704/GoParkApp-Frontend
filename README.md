@@ -3,6 +3,16 @@ Inform Park near the DMV areas and Keep tracking which Park you have been. (Flat
 Fetched “Park API” back-end(Ruby on Rails) and use API front end(Redux, React) / Stylish(CSS, Bootstrap). 
 Users can search one of the parks on the main page to see the detail page. In the detail page, Users can see the description and weather of the park, map, and direction. On the profile page, the user chooses the visited date on the calendar and leaves the comment about the park.
 
+## Install before start
+
+* npm i
+* mapbox Token
+
+### git user update 
+* heroku git:remote -a YourAppName
+
+react-super-responsive-table
+
 ## Available Scripts
 
 In the project directory, you can run:
