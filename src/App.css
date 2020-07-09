@@ -12,22 +12,27 @@ body,
   flex-direction: column;
   height: 100%;
 }
-.welcomeBackground .welcomContainer .row {
-  margin-right: 5%;
-  margin-left: 5%;
-}
+
 .welcomContainer {
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
+
+
 .welcomeBackground {
   background-image: url("https://images.unsplash.com/photo-1444488694761-b033d54b1c46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
   box-shadow: inset 0 0 0 1000px rgba(80, 80, 96, 0.42);
   background-size: cover;
   background-position: center;
 }
+
+.welcomeBackground .welcomContainer .row {
+  margin-right: 9%;
+  margin-left: 9%;
+}
+
 
 /* main page */
 #mainContainer {
@@ -60,24 +65,26 @@ body,
 
 /* profile.js */
 
-.pivoted{
-	text-align: left;
+.pivoted {
+  text-align: left;
 }
-.pivoted a{
-	color:gold
+.pivoted a {
+  color: gold;
+  font-size: 15px;
 }
 /* .particles {
   position: relative;
 } */
 .profileContainer {
   padding-bottom: 2em;
-  margin: 0 12em;
+  margin: 0 6em;
   /* position:inherit; */
 }
 
 .profileBackground {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .profileBackground canvas {
@@ -98,12 +105,12 @@ body,
 }
 .userProfile {
   display: flex;
-  justify-content: center;
+  margin-left: 25%;
 }
 
 #userProfileTable .col-sm-10 input {
-    width: 350px;
-  }
+  width: 350px;
+}
 
 .profileDate {
   width: 120px;
@@ -263,6 +270,7 @@ body,
   background-color: rgb(153, 165, 134);
   margin-right: 4em;
   margin-left: 4em;
+  margin-top:4%;
   padding: 1.2em;
 }
 .parkDetailContainer {
@@ -271,6 +279,11 @@ body,
   /* object-fit: cover; */
   background-position: center;
   background-size: cover;
+}
+
+.media{
+  margin-left:5%;
+  margin-right:5%;
 }
 
 #parkDetailImage {
@@ -516,19 +529,24 @@ body,
     margin: 20%;
   }
   /* profile */
-  .profileBackground .profileContainer {
-    margin: 0;
-  }
+
   .profileBackground .profileContainer .profileComment {
     width: 150px;
   }
 }
 
+@media (min-width: 992px) {
+  /* welcome */
+  .welcomContainer .col-md-offset-3 {
+    margin-left: 0;
+  }
+}
+
 @media (max-width: 992px) {
   /* navbar */
-  button .navbar-toggler {
+  /* button .navbar-toggler {
     display: none;
-  }
+  } */
 
   #navbarSupportedContent ul {
     flex-direction: row;
@@ -556,13 +574,16 @@ body,
   }
 
   /* profile */
-  .profileContainer{
-	margin: 0px 5em;
+  .profileContainer {
+    margin: 0px 5em;
   }
-  
+  .profileBackground .profileContainer {
+    margin: 0;
+  }
 }
 
-@media (max-width: 766px) {
+
+@media (max-width: 767px) {
   /* about */
   .aboutTextCenter {
     font-size: 60px;
@@ -588,6 +609,11 @@ body,
   }
 
   /* parkdetail */
+  .detailParkName{
+    font-size: 30px;
+    padding-top:3%
+  }
+
   .pTagBackground {
     margin-left: 2%;
     margin-right: 2%;
@@ -608,6 +634,9 @@ body,
   .profileBackground .profileContainer .profileComment {
     width: 140px;
   }
+  #userProfileTable .col-sm-10 input {
+    width: 250px;
+  }
 }
 
 @media (max-width: 415px) {
@@ -623,7 +652,6 @@ body,
   #userProfileTable .col-sm-10 input {
     width: 230px;
   }
-
 }
 
 @media (max-width: 340px) {
@@ -640,13 +668,16 @@ body,
 
   /* profile */
   .profileContainer .userProfile {
-	justify-content: flex-start;
-	margin-left:10%;
+    justify-content: flex-start;
+    margin-left: 10%;
   }
   #userProfileTable .col-sm-10 input {
     width: 250px;
   }
-  .profileVisit {
-	display:none;
+  .profileImageCenter .profileNoVisit img {
+    display: none;
+  }
+  .profileImageCenter .profileVisit img {
+    display: none;
   }
 }

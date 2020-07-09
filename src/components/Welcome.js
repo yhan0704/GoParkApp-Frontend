@@ -67,7 +67,7 @@ class Welcome extends Component {
     return (
       <div className="welcomeBackground" style={{height:"100%"}}>
         <div className="welcomContainer">
-          <div className="row" style={{ width: "100%" }}>
+          <div className="row" style={{ width: "100%", justifyContent: "center" }}>
             <div className="col-md-6 col-md-offset-3">
               <div className="panel panel-login">
                 <div className="panel-heading">
