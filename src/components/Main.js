@@ -4,7 +4,6 @@ import {  Link } from 'react-router-dom';
 import {parkName} from '../redux/actionCreators'
 
 function removeDuplicadtePark(array){
-    // debugger
     return array.filter((thing, index, self) =>
     index === self.findIndex((t) => (
       t.fullName === thing.fullName
@@ -16,7 +15,6 @@ function alphabetOrder(array){
 }
 class Main extends Component{
     render() {
-        // console.log(this.props.parkName)
         return (
             <div id="mainContainer">
                 <div className="goparkWord">

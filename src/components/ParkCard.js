@@ -14,8 +14,6 @@ function formatState(states) {
 
 class ParkCard extends Component {
   visitToggle = () => {
-    // debugger
-    // e.preventDefault()
     fetch("https://parkback.herokuapp.com/favorites", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,14 +33,11 @@ class ParkCard extends Component {
         }
       })
       .then((favoriteData) => {
-        // debugger
         this.props.favorite(favoriteData);
       });
   };
 
   render() {
-    // debugger
-    // console.log(this.props.user.parks, this.props.park)
     return (
       <div>
         <div className="ui card">

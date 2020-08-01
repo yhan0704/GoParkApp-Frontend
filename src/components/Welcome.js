@@ -17,7 +17,6 @@ class Welcome extends Component {
 
   handleLoginSubmit = (e) => {
     e.preventDefault();
-    // console.log("log in clicked")
     fetch("https://parkback.herokuapp.com/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,7 +40,6 @@ class Welcome extends Component {
   };
 
   handleSignUpSubmit = (e) => {
-    // debugger
     e.preventDefault();
     fetch("https://parkback.herokuapp.com/users", {
       method: "POST",
@@ -65,9 +63,12 @@ class Welcome extends Component {
 
   render() {
     return (
-      <div className="welcomeBackground" style={{height:"100%"}}>
+      <div className="welcomeBackground" style={{ height: "100%" }}>
         <div className="welcomContainer">
-          <div className="row" style={{ width: "100%", justifyContent: "center" }}>
+          <div
+            className="row"
+            style={{ width: "100%", justifyContent: "center" }}
+          >
             <div className="col-md-6 col-md-offset-3">
               <div className="panel panel-login">
                 <div className="panel-heading">

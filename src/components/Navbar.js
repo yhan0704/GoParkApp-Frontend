@@ -4,7 +4,6 @@ import {signOut} from '../redux/actionCreators'
 
 class Navbar extends Component{
     render() {
-        // console.log(this.props)
         return (
             <div className="navContainer">
             <nav className="navbar fixed-top navbar-expand-lg navbar-light alert-info bg-lightblue" id="sizeNavBar">

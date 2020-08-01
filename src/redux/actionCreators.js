@@ -19,7 +19,6 @@ function addComment(comments){
 }
 
 function favorite(favoriteObj){
-  // debugger
   return {type: FAVORITE, payload: favoriteObj}
 }
 
@@ -28,7 +27,6 @@ function loggedIn(userObj){
 }
 
 function signOut(){
-  // debugger
   return {type: SIGN_OUT, payload:null}
 }
 

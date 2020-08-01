@@ -5,8 +5,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import maker from "../images/mapbox-icon.png";
 
 function randomPic(images) {
-  // console.log(images)
-  // debugger
   let randomNum = Math.floor(Math.random() * 10) + 1;
   return images.find((image) => image.id === randomNum).image_url;
 }

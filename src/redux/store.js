@@ -1,10 +1,8 @@
 import {createStore, applyMiddleware, compose} from 'redux'
-// import {persistStore, autoRehydrate} from 'redux-persist'
 import reducer from './reducer'
 import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
 function saveToLocalStorage(state){
     try{
         const serializedState = JSON.stringify(state)
@@ -31,5 +29,6 @@ let store = createStore(
     persistedState,
     composeEnhancers(applyMiddleware(thunk)))
 store.subscribe(() => saveToLocalStorage(store.getState()))
+console.log(store.reducer)
 
 export default store
