@@ -82,12 +82,12 @@ const loggedInUserReducer = (oldState = null, action) => {
   }
 };
 
-const filterStateReducer = (oldState = "dc", action) => {
+const filterStateReducer = (oldState = "", action) => {
   switch (action.type) {
     case FILTER_STATE:
       return action.payload;
     default:
-      return "dc";
+      return oldState;
   }
 };
 

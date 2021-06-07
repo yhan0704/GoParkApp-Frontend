@@ -36,7 +36,6 @@ class ParkCard extends Component {
         this.props.favorite(favoriteData);
       });
   };
-
   render() {
     return (
       <div>
@@ -53,7 +52,7 @@ class ParkCard extends Component {
               ) : (
                 <img
                   id="parkImage"
-                  src={this.props.park.image_url}
+                  src={`https://source.unsplash.com/1600x900/?park${this.props.park.id}`}
                   alt={this.props.park.fullName}
                 />
               )}
@@ -67,7 +66,7 @@ class ParkCard extends Component {
               to={`/parklist/${this.props.park.fullName}`}
               className="header"
             >
-              {this.props.park.fullName}
+              {this.props.park.fullName.slice(0, 30) + "..."}
             </Link>
             <div className="meta">
               State:{" "}

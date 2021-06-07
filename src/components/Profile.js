@@ -42,7 +42,6 @@ class Profile extends Component {
     let i = 1;
     let index = 1;
     const onHandleSubmit = (e, park) => {
-      debugger;
       fetch(`https://parkback.herokuapp.com/favorites/${park.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -157,29 +156,6 @@ class Profile extends Component {
                     </Tbody>
                   ))}
             </Table>
-            {this.props.user.favorites.length !== 0 ? (
-              <div className="profileVisit">
-                <img
-                  style={{
-                    marginLeft:"5%",
-                    marginRight:"5%",
-                    height: "400px",
-                  }}
-                  src="https://picsum.photos/400/500?random=1"
-                  alt="park"
-                />
-              </div>
-            ) : (
-              <div className="profileNoVisit">
-                <p style={{ fontSize: "30px" }}>
-                  There is no visit any Park currently
-                </p>
-                <img
-                  src="https://media.giphy.com/media/3ohhwJLZ2P9KOt3Z6w/source.gif"
-                  alt="park"
-                />
-              </div>
-            )}
           </div>
         </div>
         <ParticlesContainer className="particles"></ParticlesContainer>

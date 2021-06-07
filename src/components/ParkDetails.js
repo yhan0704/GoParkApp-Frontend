@@ -27,7 +27,7 @@ const ParkDetails = (props) => {
         <div className="media">
           <img
             id="parkDetailImage"
-            src={randomPic(props.images)}
+            src={`https://source.unsplash.com/1600x900/?park${props.parks.fullName}`}
             alt={props.parks.fullName}
           />
           <div className="media-body">
