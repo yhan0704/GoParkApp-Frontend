@@ -41,22 +41,15 @@ class ParkCard extends Component {
       <div>
         <div className="ui card">
           <div className="image">
-            <a href={`/parklist/${this.props.park.fullName}`}>
-              {this.props.park.fullName ===
-              "Assateague Island National Seashore" ? (
-                <img
-                  id="parkImage"
-                  src="https://www.nps.gov/common/uploads/structured_data/3C809F06-1DD8-B71B-0B39C9B927D2C688.jpg"
-                  alt={this.props.park.fullName}
-                />
-              ) : (
+            <Link to={`/parklist/${this.props.park.fullName}`}>
+              {
                 <img
                   id="parkImage"
                   src={`https://source.unsplash.com/1600x900/?park${this.props.park.id}`}
                   alt={this.props.park.fullName}
                 />
-              )}
-            </a>
+              }
+            </Link>
           </div>
           <div
             style={{ padding: "0.15em", textAlign: "center" }}

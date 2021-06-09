@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signOut } from "../redux/actionCreators";
+import img from "../../src/images/close.png";
+import { Link } from "react-router-dom";
 
 class Navbar extends Component {
+  state = {
+    open: true,
+  };
+
+  onClick = () => {
+    this.setState({
+      open: !this.state.open,
+    });
+  };
   render() {
     return (
       <div className="navContainer">
         <nav
-          className="navbar fixed-top navbar-expand-lg navbar-light alert-info bg-lightblue"
+          className="navbar fixed-top navbar-expand-md navbar-light alert-info bg-lightblue"
           id="sizeNavBar"
         >
           <button
@@ -18,47 +29,58 @@ class Navbar extends Component {
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={this.onClick}
           >
-            <span className="navbar-toggler-icon"></span>
+            {this.state.open ? (
+              <span className="navbar-toggler-icon"></span>
+            ) : (
+              <span className="navbar-light navbar-toggler-icon1">
+                <img
+                  src={img}
+                  style={{ width: "50px", height: "40px" }}
+                  alt=""
+                />
+              </span>
+            )}
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a id="navOption" className="nav-link" href="/main">
+                <Link id="navOption" className="nav-link" to="/main">
                   Home <span className="sr-only">(current)</span>
-                </a>
+                </Link>
               </li>
               <li className="nav-item active">
-                <a id="navOption" className="nav-link" href="/about">
+                <Link id="navOption" className="nav-link" to="/about">
                   About Us
-                </a>
+                </Link>
               </li>
               <li className="nav-item active">
-                <a id="navOption" className="nav-link" href="/parklist">
+                <Link id="navOption" className="nav-link" to="/parklist">
                   Park
-                </a>
+                </Link>
               </li>
             </ul>
             <div id="profileSignoutTag" className="justify-content-end">
-              <a
+              <Link
                 id="navOption"
                 className="nav-link"
-                href="/profile"
+                to="/profile"
                 style={{ color: "black" }}
               >
                 Profile
-              </a>
-              <a
+              </Link>
+              <Link
                 id="navOption"
                 className="nav-link"
-                href="/login"
+                to="/login"
                 onClick={() => {
                   this.props.signOut(this.props.user);
                 }}
                 style={{ color: "black" }}
               >
                 {this.props.user ? "Sign Out" : ""}{" "}
-              </a>
+              </Link>
             </div>
           </div>
         </nav>

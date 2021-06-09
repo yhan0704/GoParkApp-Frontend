@@ -212,6 +212,10 @@ body,
   margin-bottom: 0;
 }
 
+.navbar-light .navbar-toggler{
+  border: none;
+}
+
 #navbarSupportedContent a {
   font-size: 20px;
 }
@@ -352,6 +356,8 @@ body,
   flex: 1;
   text-align: end;
 }
+
+
 
 .d-flex.justify-content-end a {
   color: gray;
@@ -585,12 +591,21 @@ body,
 }
 
 
-@media (max-width: 767px) {
+@media (max-width: 765px) {
   /* about */
   .aboutTextCenter {
     font-size: 60px;
   }
   /* navbar */
+  #sizeNavBar{
+    flex-direction: column;
+  }
+
+  .navContainerOpen{
+    height: 100vh;
+    overflow: hidden;
+  }
+
   button {
     display: inherit;
   }

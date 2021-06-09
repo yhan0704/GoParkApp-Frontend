@@ -10,6 +10,8 @@ Users can search one of the parks on the main page to see the detail page. In th
 
 ### git origin update for heroku
 * heroku git:remote -a YourAppName
+* deploy "start": "node server.js" 
+* normal "start": "react-scripts start"
 
 react-super-responsive-table
 
