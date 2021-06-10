@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signOut } from "../redux/actionCreators";
-import img from "../../src/images/close.png";
 import { Link } from "react-router-dom";
 
 class Navbar extends Component {
@@ -35,34 +34,53 @@ class Navbar extends Component {
               <span className="navbar-toggler-icon"></span>
             ) : (
               <span className="navbar-light navbar-toggler-icon1">
-                <img
-                  src={img}
-                  style={{ width: "50px", height: "40px" }}
-                  alt=""
-                />
+                <i class="far fa-window-close"></i>
               </span>
             )}
           </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <div
+            className={
+              this.state.open
+                ? "collapse navbar-collapse"
+                : "collapse navbar-collapse in"
+            }
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <Link id="navOption" className="nav-link" to="/main">
+                <Link
+                  id="navOption"
+                  onClick={this.onClick}
+                  className="nav-link"
+                  to="/main"
+                >
                   Home <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li className="nav-item active">
-                <Link id="navOption" className="nav-link" to="/about">
-                  About Us
+                <Link
+                  id="navOption"
+                  onClick={this.onClick}
+                  className="nav-link"
+                  to="/about"
+                >
+                  About
                 </Link>
               </li>
               <li className="nav-item active">
-                <Link id="navOption" className="nav-link" to="/parklist">
+                <Link
+                  id="navOption"
+                  onClick={this.onClick}
+                  className="nav-link"
+                  to="/parklist"
+                >
                   Park
                 </Link>
               </li>
             </ul>
             <div id="profileSignoutTag" className="justify-content-end">
               <Link
+                onClick={this.onClick}
                 id="navOption"
                 className="nav-link"
                 to="/profile"

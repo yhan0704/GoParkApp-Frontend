@@ -6,7 +6,6 @@ const SearchBar = (props) => {
   return (
     <div>
       <form className="searchContainer">
-        <i className="fas fa-search" aria-hidden="true"></i>
         <input
           id="searchbar"
           type="text"

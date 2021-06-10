@@ -45,7 +45,7 @@ class ParkCard extends Component {
               {
                 <img
                   id="parkImage"
-                  src={`https://source.unsplash.com/1600x900/?park${this.props.park.id}`}
+                  src={`https://source.unsplash.com/1600x900/?picnic${this.props.park.id}`}
                   alt={this.props.park.fullName}
                 />
               }
