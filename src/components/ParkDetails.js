@@ -4,11 +4,6 @@ import ReactMapGL, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import maker from "../images/mapbox-icon.png";
 
-function randomPic(images) {
-  let randomNum = Math.floor(Math.random() * 10) + 1;
-  return images.find((image) => image.id === randomNum).image_url;
-}
-
 let i = 1;
 const ParkDetails = (props) => {
   const [viewport] = useState({
@@ -27,7 +22,7 @@ const ParkDetails = (props) => {
         <div className="media">
           <img
             id="parkDetailImage"
-            src={`https://source.unsplash.com/1600x900/?park${props.parks.fullName}`}
+            src={`https://source.unsplash.com/300x300/?park${props.parks.fullName}`}
             alt={props.parks.fullName}
           />
           <div className="media-body">
@@ -125,7 +120,7 @@ const ParkDetails = (props) => {
         <div className="media">
           <img
             id="parkDetailImage"
-            src={randomPic(props.images)}
+            src={`https://source.unsplash.com/300x300/?landscape${props.parks.fullName}`}
             alt={props.parks.fullName}
           />
 

@@ -2,7 +2,6 @@
   font-size: 18px;
   border: none;
   outline: none;
-  border-radius: 1%;
 }
 html,
 body,
@@ -18,7 +17,7 @@ body,
 
 .welcomContainer {
   display: flex;
-  height: 100%;
+  height: 100vh;
   justify-content: center;
   align-items: center;
 }
@@ -26,7 +25,6 @@ body,
 
 .welcomeBackground {
   background-image: url("https://images.unsplash.com/photo-1444488694761-b033d54b1c46?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60");
-  box-shadow: inset 0 0 0 1000px rgba(80, 80, 96, 0.42);
   background-size: cover;
   background-position: center;
 }
@@ -45,7 +43,7 @@ body,
 /* main page */
 #mainContainer {
   background-image: url("https://images.unsplash.com/photo-1510521212584-6d33ce4408d1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1358&q=80");
-  box-shadow: inset 0 0 0 1000px rgba(36, 36, 36, 0.42);
+  box-shadow: inset 0 0 0 1000px rgba(36, 36, 36, 0.50);
   height: 90%;
   background-position: center;
   background-repeat: no-repeat;
@@ -69,6 +67,10 @@ body,
   width: 550px;
   height: 2.2em;
   font-size: 18px;
+}
+
+.parkMenubar a{
+  /* margin-left:7px; */
 }
 
 /* profile.js */
@@ -113,7 +115,7 @@ body,
 }
 .userProfile {
   display: flex;
-  margin-left: 25%;
+  justify-content: center;
 }
 
 #userProfileTable .col-sm-10 input {
@@ -158,22 +160,22 @@ body,
 .imageInAbout {
   display: flex;
   flex-flow: row wrap;
-  /* margin:auto; */
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.imageInAbout img{
+  margin: 10px;
 }
 
 .aboutMainText {
-  font-size: 40px;
+  font-size: 30px;
   font-family: "Lobster", cursive;
-  /* padding: 4em; */
-  margin: 10%;
+  margin: 7%;
 }
 .svgImageAbout {
   display: flex;
   flex-flow: row wrap;
-  /* margin:auto; */
   justify-content: space-around;
-  /* justify-content: center; */
   margin: 4em 0em;
 }
 
@@ -207,7 +209,7 @@ body,
 /* parkList */
 
 .backgroundImg {
-  background: url("https://wallpapershome.com/images/wallpapers/trees-3840x2160-4k-hd-wallpaper-blossom-park-pink-5266.jpg");
+  background-color: #778899;
   box-shadow: inset 0 0 0 1000px rgba(247, 244, 244, 0.42);
 }
 .cardContainer {
@@ -291,11 +293,8 @@ body,
   font-weight: bold;
 }
 .pTagBackground {
-  border-radius: 15%;
   margin-right: 4em;
   margin-left: 4em;
-  margin-top:4%;
-  padding: 1.2em;
 }
 .parkDetailContainer {
   background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx1oxiebInDGV0YI_aogGygLyD4BNTEm2LnedwLp-4wbJNaHD6gw&s");
@@ -317,7 +316,7 @@ body,
 #parkDetailImage {
   padding-top: 0;
   height: 300px;
-  width: 300px;
+  width: 347px;
   margin: 3% 3% 3% 3%;
 }
 
@@ -520,24 +519,11 @@ body,
 }
 
 @media (max-width: 1024px) {
-  /* welcome */
-  /* .welcomeBackground .welcomContainer .row {
-    margin: 0;
-  } */
-
-  /* main */
-  #mainContainer {
-    display: flex;
-  }
-
-  #mainContainer .parkMenubar {
-    align-self: center;
-    padding-bottom: 20%;
-  }
-
+  /* profile */
   #profileSignoutTag {
     text-align: right;
   }
+
   .parkDetailContainer .media {
     flex-direction: column;
     text-align: center;
@@ -556,8 +542,9 @@ body,
   }
 
   #mainContainer .goparkWord {
-    justify-content: center;
-    margin: 20%;
+    position: absolute;
+    top:40px;
+    left:0;
   }
   /* profile */
 
@@ -574,11 +561,6 @@ body,
 }
 
 @media (max-width: 992px) {
-  /* navbar */
-  /* button .navbar-toggler {
-    display: none;
-  } */
-
   #navbarSupportedContent ul {
     flex-direction: row;
   }
@@ -613,19 +595,21 @@ body,
   }
 }
 
-@media (max-width: 765px) {
-  .welcomeBackground .welcomContainer .row{
-    /* margin: 0 15%; */
-  }
-  
+@media (min-width: 768px) {
+  /* welcome */
   .welcomeBackground .welcomContainer .row .col-lg-12 .form-group:last-child .row{
     width: 100%;
     margin: 0;
     justify-content: center;  
   }
+
+  .welcomeBackground .welcomContainer .row .col-lg-12 .row .col-sm-6.col-sm-offset-3{
+    margin-left: 0;
+  }
 }
 
-@media (max-width: 765px) {
+@media (max-width: 768px) {
+
   /* about */
   .aboutTextCenter {
     font-size: 60px;
@@ -699,7 +683,7 @@ body,
 @media (max-width: 415px) {
   /* main */
   #mainContainer .goparkWord p {
-    font-size: 50px;
+    font-size: 60px;
   }
   /* footer */
   footer .mb-5,

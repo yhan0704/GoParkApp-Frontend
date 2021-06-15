@@ -11,11 +11,15 @@ const SearchBar = (props) => {
           type="text"
           placeholder="Search"
           aria-label="Search"
+          style={{ borderRadius: "10px" }}
           onChange={(e) => props.onSearch(e.target.value)}
         />
       </form>
       <form className="radioContainer">
-        <select onChange={(e) => props.filterState(e.target.value)}>
+        <select
+          onChange={(e) => props.filterState(e.target.value)}
+          style={{ borderRadius: "10px" }}
+        >
           <option value="">All</option>
           <option value="DC">Washington D.C</option>
           <option value="MD">Maryland</option>
@@ -27,7 +31,6 @@ const SearchBar = (props) => {
 };
 
 const mapStateToProps = (store) => ({
-  value: store.search,
   filter: store.filter,
 });
 

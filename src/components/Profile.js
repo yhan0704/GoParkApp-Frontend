@@ -82,6 +82,7 @@ class Profile extends Component {
                     id="username"
                     disabled
                     value={this.props.user.name}
+                    style={{ padding: "10px" }}
                   />
                 </div>
                 <label htmlFor="inputEmail3" className=" col-form-label">
@@ -89,6 +90,7 @@ class Profile extends Component {
                 </label>
                 <div className="col-sm-10">
                   <input
+                    style={{ padding: "10px" }}
                     type="text"
                     id="useremail"
                     disabled
@@ -102,10 +104,10 @@ class Profile extends Component {
             <Table className="table table-hover">
               <Thead>
                 <Tr>
-                  <Th>#</Th>
-                  <Th>Park Name</Th>
-                  <Th>Park State</Th>
-                  <Th>Visited Date</Th>
+                  <Th></Th>
+                  <Th>Name</Th>
+                  <Th>State</Th>
+                  <Th>Date</Th>
                   <Th>Comments</Th>
                 </Tr>
               </Thead>
@@ -142,6 +144,7 @@ class Profile extends Component {
                             className="profileComment"
                             placeholder="Comments"
                             defaultValue={park.comment}
+                            style={{ borderRadius: "10px" }}
                           />
                         </Td>
                         <Td>

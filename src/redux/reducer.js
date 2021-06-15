@@ -33,7 +33,7 @@ const parkNameReducer = (oldState = "", action) => {
     case CHANGING_SEARCH_TEXT:
       return action.payload;
     default:
-      return "";
+      return oldState;
   }
 };
 
