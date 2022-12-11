@@ -15,7 +15,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.1.2",
     "date-fns": "^2.22.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-favicon": "^2.0.1",
     "heroku": "^7.54.0",
     "mapbox-gl": "^1.13.1",
